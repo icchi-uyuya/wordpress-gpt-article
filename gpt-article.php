@@ -59,7 +59,7 @@ function app_admin_scripts($hook_suffix) {
 
   wp_enqueue_script(
     'gpt-article',
-    plugin_dir_url(__FILE__) . 'src/index.js',
+    plugin_dir_url(__FILE__) . 'build/index.js',
     $assets['dependencies'],
     $assets['version'],
     true, 
