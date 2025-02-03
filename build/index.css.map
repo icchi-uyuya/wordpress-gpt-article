@@ -1,0 +1,1 @@
+{"version":3,"file":"index.css","mappings":";;;;;;;AAAA;EACE,4BAA4B;EAC5B,qBAAqB;AACvB,C","sources":["webpack://gpt-article/./src/scss/app.module.css"],"sourcesContent":[".tag {\n  margin-left: 30px !important;\n  background-color: red;\n}"],"names":[],"sourceRoot":""}

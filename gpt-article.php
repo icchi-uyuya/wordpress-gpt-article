@@ -16,9 +16,34 @@ add_action('init', 'init_plugin');
 function init_plugin() {
   if (is_admin() && is_user_logged_in()) { //権限チェック
     add_action('admin_menu', 'set_plugin_menu');
-
+    
     add_action('admin_enqueue_scripts', 'app_admin_scripts');
+    
+    add_action('admin_init', 'init_plugin_settings');
   }
+}
+
+//設定画面のフィールド
+function init_plugin_settings() {
+  register_setting(
+    'gpt-article', //設定グループ
+    'gpt-article_main', //オプション名
+  );
+  add_settings_section(
+    'gpt-article_main', //セクションID
+    'てすと1', //セクションタイトル
+    'show_api_key', //セクションの表示関数
+    'gpt-article', //設定ページ
+  );
+  //FIXME フィールドが表示されない
+  add_settings_field( 
+    'api_key',
+    'APIキー',
+    function () {
+    },
+    'gpt-article',
+    'gpt-article_main',
+  );
 }
 
 //管理画面のメニューを設定
@@ -68,7 +93,7 @@ function app_admin_scripts($hook_suffix) {
 
 function show_app() {
 ?>
-  <h1>記事の生成</h1>
+  <h1>記事の生成   試作版</h1>
   <p class="description">
     このプラグインはOpenAIのGPTを使用して記事を生成するための補助ツールです。
     以下のフォームに記事のタイトルと内容を入力してください。
@@ -90,9 +115,12 @@ function show_option() {
     <a href="https://openai.com/index/openai-api/">https://openai.com/index/openai-api/</a>
     にアクセスしてアカウントを作成し、新たなキーを発行してください。
   </p>
-  <form>
-    <input type="text">
-    <input type="submit">
+  <form method="post" action="options.php">
+    <?php
+      settings_fields('gpt-article'); //設定グループ
+      do_settings_sections('gpt-article_main'); //セクション名
+      submit_button();
+    ?>
   </form>
   <h2>使用する言語モデル</h2>
   <p class="description">

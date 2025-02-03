@@ -32887,10 +32887,26 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./src/app.scss":
-/*!**********************!*\
-  !*** ./src/app.scss ***!
-  \**********************/
+/***/ "./src/scss/app.module.css":
+/*!*********************************!*\
+  !*** ./src/scss/app.module.css ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// extracted by mini-css-extract-plugin
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"tag":"rR7knqVBuTnlGJiv9TEI"});
+
+/***/ }),
+
+/***/ "./src/scss/app.scss":
+/*!***************************!*\
+  !*** ./src/scss/app.scss ***!
+  \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -49987,32 +50003,36 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var openai__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! openai */ "./node_modules/openai/index.mjs");
+/* harmony import */ var openai__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! openai */ "./node_modules/openai/index.mjs");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Container/Container.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Autocomplete/Autocomplete.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/TextField/TextField.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Stack/Stack.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Chip/Chip.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Accordion/Accordion.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionSummary/AccordionSummary.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionDetails/AccordionDetails.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CircularProgress/CircularProgress.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
-/* harmony import */ var _prompt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./prompt */ "./src/prompt.js");
-/* harmony import */ var _article_basic_article__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./article/basic_article */ "./src/article/basic_article.js");
-/* harmony import */ var _article_heading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./article/heading */ "./src/article/heading.js");
-/* harmony import */ var _app_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.scss */ "./src/app.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Container/Container.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Autocomplete/Autocomplete.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/TextField/TextField.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Stack/Stack.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Chip/Chip.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Accordion/Accordion.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionSummary/AccordionSummary.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionDetails/AccordionDetails.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CircularProgress/CircularProgress.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scss/app.scss */ "./src/scss/app.scss");
+/* harmony import */ var _scss_app_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scss/app.module.css */ "./src/scss/app.module.css");
+/* harmony import */ var _prompt__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./prompt */ "./src/prompt.js");
+/* harmony import */ var _article_basic_article__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./article/basic_article */ "./src/article/basic_article.js");
+/* harmony import */ var _article_heading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./article/heading */ "./src/article/heading.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 
 
 
+
+
+//スタイルシートの読み込み
 
 
 
@@ -50020,13 +50040,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 console.log("hello world! v0.1");
-const openai = new openai__WEBPACK_IMPORTED_MODULE_7__.OpenAI({
-  apiKey: "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",
-  //FIXME apiキーは設定画面で受け取るように
+
+//FIXME 仮でハードコーディングしている
+const API_RAW = "c2stcHJvai1iVTlhdGpVV3RWMWxXRGJVMjkxWHMwMVFaenZwZ3hhLW9YRnNKRWhiUG1WR295Xy1aMnBTYmRtNnNvRXREcXZVMGFUVi1PWWZfbVQzQmxia0ZKZGJDak1qUzcySkZjQ1dFTGltZ1BpMnZjcF9nQWtlTnB5VlFCV1dERFhTOGhyTFRoUzZrbi1HZ3lOeDIxQTlkajdCMENsNWZDa0E=";
+const openai = new openai__WEBPACK_IMPORTED_MODULE_8__.OpenAI({
+  apiKey: atob(API_RAW),
   dangerouslyAllowBrowser: true
 });
-const prompt = new _prompt__WEBPACK_IMPORTED_MODULE_2__.Prompt(openai);
-const article = new _article_basic_article__WEBPACK_IMPORTED_MODULE_3__.BasicArticle();
+const prompt = new _prompt__WEBPACK_IMPORTED_MODULE_4__.Prompt(openai);
+const article = new _article_basic_article__WEBPACK_IMPORTED_MODULE_5__.BasicArticle();
 
 //TODO UIをMUIで統一したい
 const App = () => {
@@ -50036,10 +50058,16 @@ const App = () => {
   const [headings, setHeadings] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]); //list[Heading]
 
   const [isGenerating, setIsGenerating] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+  const [optTitles, setOptTitles] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   const [optHeadings, setOptHeadings] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   const [optGenerated, setOptGenerated] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   console.log(keywords, target, title, headings); //TODO デバッグ用
   console.log(optHeadings);
+  const suggestTitles = async () => {
+    const titles = await prompt.suggestTitles(keywords, target);
+    setOptTitles(titles);
+    console.log(titles);
+  };
   const suggestHeadings = async () => {
     const headings = await prompt.suggestOutlines(title, keywords, target);
     setOptHeadings(headings);
@@ -50048,7 +50076,7 @@ const App = () => {
   const addHeading = async str => {
     console.log(str);
     let sub = await prompt.suggestSubheadings(title, str);
-    let h = new _article_heading__WEBPACK_IMPORTED_MODULE_4__.Heading(str, sub);
+    let h = new _article_heading__WEBPACK_IMPORTED_MODULE_6__.Heading(str, sub);
     console.log(`add heading: ${h.name} ${h.subs}`);
     setHeadings([...headings, h]);
   };
@@ -50063,40 +50091,58 @@ const App = () => {
     //生成完了の処理
     setIsGenerating(false);
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    maxWidth: "md",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u30AD\u30FC\u30EF\u30FC\u30C9"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
       multiple: true,
       freeSolo: true,
       options: [],
       value: keywords,
       onChange: (e, v) => setKeywords(v),
-      renderInput: params => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      renderInput: params => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
         ...params,
         variant: "standard",
         placeholder: "\u30AD\u30FC\u30EF\u30FC\u30C9\u3092\u5165\u529B\u3057Enter\u3067\u8FFD\u52A0\u3057\u307E\u3059"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u30BF\u30FC\u30B2\u30C3\u30C8"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
       variant: "standard",
       placeholder: "\u60F3\u5B9A\u3055\u308C\u308B\u8A18\u4E8B\u306E\u8AAD\u8005\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044 (\u4F8B: \u30AB\u30C3\u30D7\u30EB)",
       value: target,
       onChange: e => setTarget(e.target.value)
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u30BF\u30A4\u30C8\u30EB"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
-      variant: "standard",
-      placeholder: "\u8A18\u4E8B\u306E\u30BF\u30A4\u30C8\u30EB\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044",
-      value: title,
-      onChange: e => setTitle(e.target.value)
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
-      children: "\u898B\u51FA\u3057"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
       alignItems: "flex-start",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        variant: "contained",
+        onClick: suggestTitles,
+        children: "\u30BF\u30A4\u30C8\u30EB\u3092\u63D0\u6848"
+      }), optTitles.length > 0 && optTitles.map((v, i) => {
+        const onClick = () => {
+          setTitle(v);
+          setOptTitles([]);
+        };
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          label: v,
+          onClick: onClick
+        }, i);
+      }), optTitles.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
+        variant: "caption",
+        children: "\u30AF\u30EA\u30C3\u30AF\u3067\u5019\u88DC\u3092\u63A1\u7528\u3057\u307E\u3059"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        variant: "standard",
+        placeholder: "\u8A18\u4E8B\u306E\u30BF\u30A4\u30C8\u30EB\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044",
+        value: title,
+        onChange: e => setTitle(e.target.value)
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
+      children: "\u898B\u51FA\u3057"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      alignItems: "flex-start",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
         variant: "contained",
         onClick: suggestHeadings,
         children: "\u30BF\u30A4\u30C8\u30EB\u304B\u3089\u898B\u51FA\u3057\u3092\u63D0\u6848"
@@ -50105,15 +50151,15 @@ const App = () => {
           addHeading(v);
           setOptHeadings(optHeadings.filter(h => h !== v));
         };
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_14__["default"], {
           label: v,
           onClick: onClick
         }, i);
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_14__["default"], {
+      }), optHeadings.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
         variant: "caption",
         children: "\u30AF\u30EA\u30C3\u30AF\u3067\u5019\u88DC\u3092\u63A1\u7528\u3057\u307E\u3059"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
       variant: "standard",
       placeholder: "\u5165\u529B\u3057Ender\u3067\u624B\u52D5\u3067\u8FFD\u52A0\u3057\u307E\u3059",
       onKeyDown: e => {
@@ -50122,47 +50168,44 @@ const App = () => {
           e.target.value = "";
         }
       }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u30EC\u30A4\u30A2\u30A6\u30C8"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
-      alignItems: "flex-start",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_14__["default"], {
-        variant: "caption",
-        children: "\u898B\u51FA\u3057\u3092\u3082\u3068\u306B\u5C0F\u898B\u51FA\u3057\u3092\u3044\u304F\u3064\u304B\u63D0\u6848\u3057\u307E\u3057\u305F\u3002 \u9805\u76EE\u306F\u81EA\u7531\u306B\u7DE8\u96C6\u3067\u304D\u308B\u305F\u3081\u3001\u9806\u5E8F\u306E\u5909\u66F4\u3084\u8FFD\u52A0\u30FB\u524A\u9664\u3001\u7DE8\u96C6\u306A\u3069\u3092\u884C\u3063\u3066\u304B\u3089\u8A18\u4E8B\u3092\u751F\u6210\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
-      }), headings.length > 0 && headings.map((v, i) => {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
-          defaultExpanded: true,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_16__["default"], {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_14__["default"], {
-              children: v.name
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_17__["default"], {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
-              multiline: true,
-              defaultValue: v.subs.join("\n")
-            })
-          })]
-        }, i);
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
-        variant: "contained",
-        onClick: generateBody,
-        children: "\u8A18\u4E8B\u3092\u751F\u6210"
-      }), isGenerating && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_18__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {})]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      variant: "caption",
+      children: "\u898B\u51FA\u3057\u3092\u3082\u3068\u306B\u5C0F\u898B\u51FA\u3057\u3092\u3044\u304F\u3064\u304B\u63D0\u6848\u3057\u307E\u3057\u305F\u3002 \u9805\u76EE\u306F\u81EA\u7531\u306B\u7DE8\u96C6\u3067\u304D\u308B\u305F\u3081\u3001\u9806\u5E8F\u306E\u5909\u66F4\u3084\u8FFD\u52A0\u30FB\u524A\u9664\u3001\u7DE8\u96C6\u306A\u3069\u3092\u884C\u3063\u3066\u304B\u3089\u8A18\u4E8B\u3092\u751F\u6210\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+    }), headings.length > 0 && headings.map((v, i) => {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        defaultExpanded: true,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_17__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
+            children: v.name
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_18__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+            multiline: true,
+            defaultValue: v.subs.join("\n")
+          })
+        })]
+      }, i);
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      variant: "contained",
+      onClick: generateBody,
+      children: "\u8A18\u4E8B\u3092\u751F\u6210"
+    }), isGenerating && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_19__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u51FA\u529B\u7D50\u679C\u306E\u78BA\u8A8D"
-    }), optGenerated.length > 0 && optGenerated.map((v, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_19__["default"], {
+    }), optGenerated.length > 0 && optGenerated.map((v, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_20__["default"], {
       dangerouslyAllowBrowser: true,
       dangerouslySetInnerHTML: {
         __html: v
       }
-    }, i)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }, i)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
       variant: "contained",
       onClick: () => {},
       children: "HTML\u3092\u30B3\u30D4\u30FC"
     })]
   });
 };
-(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(App, {}), document.getElementById("app"));
+(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(App, {}), document.getElementById("app"));
 })();
 
 /******/ })()
