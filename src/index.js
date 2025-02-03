@@ -1,6 +1,5 @@
 import { OpenAI } from "openai";
-import { render } from "@wordpress/element";
-
+import { render } from "react-dom";
 import { useState } from "react";
 import {
   Typography,
