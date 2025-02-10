@@ -201,7 +201,9 @@ const App = () => {
             dangerouslySetInnerHTML={{ __html: v }}
           />
         ))}
-      <Button variant="contained" onClick={() => {}}>
+      <Button variant="contained" onClick={() => {
+        navigator.clipboard.writeText(optGenerated.join("\n"));
+      }}>
         HTMLをコピー
       </Button>
     </Container>

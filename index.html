@@ -4,9 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>記事生成 試作版</title>
+    <script type="module">
+      import React from "https://esm.sh/react@19/?dev"
+      import ReactDOMClient from "https://esm.sh/react-dom@19/client?dev"
+    </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
     <div id="app"></div>
-    <script src="./build/index.js"></script>
+    <script type="text/babel" src="./src/index.js"></script>
   </body>
 </html>
