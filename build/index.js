@@ -50041,9 +50041,9 @@ const article = new _article_basic_article__WEBPACK_IMPORTED_MODULE_5__.BasicArt
 
 //TODO UIをMUIで統一したい
 const App = () => {
-  const [keywords, setKeywords] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(["ハンドメイド", "指輪"]);
-  const [target, setTarget] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("カップル");
-  const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("ハンドメイドの指輪の選び方! in 福岡");
+  const [keywords, setKeywords] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
+  const [target, setTarget] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
+  const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
   const [headings, setHeadings] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]); //list[Heading]
 
   const [isGenerating, setIsGenerating] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
@@ -50073,11 +50073,13 @@ const App = () => {
     //生成結果を初期化
     setIsGenerating(true);
     setOptGenerated([]);
+    const res = [];
     for (let h of headings) {
       let s = await prompt.generateBody(title, h.name, h.subs);
-      setOptGenerated([...optGenerated, s]);
+      res.append(s);
     }
     //生成完了の処理
+    setOptGenerated(res);
     setIsGenerating(false);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -50189,7 +50191,9 @@ const App = () => {
       }
     }, i)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
       variant: "contained",
-      onClick: () => {},
+      onClick: () => {
+        navigator.clipboard.writeText(optGenerated.join("\n"));
+      },
       children: "HTML\u3092\u30B3\u30D4\u30FC"
     })]
   });

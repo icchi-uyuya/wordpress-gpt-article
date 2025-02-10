@@ -41,9 +41,9 @@ const article = new BasicArticle();
 
 //TODO UIをMUIで統一したい
 const App = () => {
-  const [keywords, setKeywords] = useState(["ハンドメイド", "指輪"]);
-  const [target, setTarget] = useState("カップル");
-  const [title, setTitle] = useState("ハンドメイドの指輪の選び方! in 福岡");
+  const [keywords, setKeywords] = useState([]);
+  const [target, setTarget] = useState("");
+  const [title, setTitle] = useState("");
   const [headings, setHeadings] = useState([]); //list[Heading]
 
   const [isGenerating, setIsGenerating] = useState(false);
@@ -79,11 +79,13 @@ const App = () => {
     setIsGenerating(true);
     setOptGenerated([]);
 
+    const res = []
     for (let h of headings) {
       let s = await prompt.generateBody(title, h.name, h.subs);
-      setOptGenerated([...optGenerated, s]);
+      res.append(s);
     }
     //生成完了の処理
+    setOptGenerated(res);
     setIsGenerating(false);
   };
 
