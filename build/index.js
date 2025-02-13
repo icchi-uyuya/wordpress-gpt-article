@@ -18071,6 +18071,1976 @@ const selectClasses = (0,_mui_utils_generateUtilityClasses__WEBPACK_IMPORTED_MOD
 
 /***/ }),
 
+/***/ "./node_modules/@mui/material/Slider/Slider.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@mui/material/Slider/Slider.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SliderMark: () => (/* binding */ SliderMark),
+/* harmony export */   SliderMarkLabel: () => (/* binding */ SliderMarkLabel),
+/* harmony export */   SliderRail: () => (/* binding */ SliderRail),
+/* harmony export */   SliderRoot: () => (/* binding */ SliderRoot),
+/* harmony export */   SliderThumb: () => (/* binding */ SliderThumb),
+/* harmony export */   SliderTrack: () => (/* binding */ SliderTrack),
+/* harmony export */   SliderValueLabel: () => (/* binding */ SliderValueLabel),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.mjs");
+/* harmony import */ var _mui_utils_chainPropTypes__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @mui/utils/chainPropTypes */ "./node_modules/@mui/utils/esm/chainPropTypes/chainPropTypes.js");
+/* harmony import */ var _mui_utils_composeClasses__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/utils/composeClasses */ "./node_modules/@mui/utils/esm/composeClasses/composeClasses.js");
+/* harmony import */ var _mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/system/colorManipulator */ "./node_modules/@mui/system/esm/colorManipulator/colorManipulator.js");
+/* harmony import */ var _mui_system_RtlProvider__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @mui/system/RtlProvider */ "./node_modules/@mui/system/esm/RtlProvider/index.js");
+/* harmony import */ var _mui_utils_useSlotProps__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @mui/utils/useSlotProps */ "./node_modules/@mui/utils/esm/useSlotProps/useSlotProps.js");
+/* harmony import */ var _useSlider_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./useSlider.js */ "./node_modules/@mui/material/Slider/useSlider.js");
+/* harmony import */ var _utils_isHostComponent_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../utils/isHostComponent.js */ "./node_modules/@mui/material/utils/isHostComponent.js");
+/* harmony import */ var _zero_styled_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../zero-styled/index.js */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var _utils_memoTheme_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/memoTheme.js */ "./node_modules/@mui/material/utils/memoTheme.js");
+/* harmony import */ var _DefaultPropsProvider_index_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../DefaultPropsProvider/index.js */ "./node_modules/@mui/material/DefaultPropsProvider/DefaultPropsProvider.js");
+/* harmony import */ var _styles_slotShouldForwardProp_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../styles/slotShouldForwardProp.js */ "./node_modules/@mui/material/styles/slotShouldForwardProp.js");
+/* harmony import */ var _utils_shouldSpreadAdditionalProps_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../utils/shouldSpreadAdditionalProps.js */ "./node_modules/@mui/material/utils/shouldSpreadAdditionalProps.js");
+/* harmony import */ var _utils_capitalize_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/capitalize.js */ "./node_modules/@mui/material/utils/capitalize.js");
+/* harmony import */ var _utils_createSimplePaletteValueFilter_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/createSimplePaletteValueFilter.js */ "./node_modules/@mui/material/utils/createSimplePaletteValueFilter.js");
+/* harmony import */ var _SliderValueLabel_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./SliderValueLabel.js */ "./node_modules/@mui/material/Slider/SliderValueLabel.js");
+/* harmony import */ var _sliderClasses_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./sliderClasses.js */ "./node_modules/@mui/material/Slider/sliderClasses.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+'use client';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Identity(x) {
+  return x;
+}
+const SliderRoot = (0,_zero_styled_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])('span', {
+  name: 'MuiSlider',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, styles[`color${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_4__["default"])(ownerState.color)}`], ownerState.size !== 'medium' && styles[`size${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_4__["default"])(ownerState.size)}`], ownerState.marked && styles.marked, ownerState.orientation === 'vertical' && styles.vertical, ownerState.track === 'inverted' && styles.trackInverted, ownerState.track === false && styles.trackFalse];
+  }
+})((0,_utils_memoTheme_js__WEBPACK_IMPORTED_MODULE_5__["default"])(({
+  theme
+}) => ({
+  borderRadius: 12,
+  boxSizing: 'content-box',
+  display: 'inline-block',
+  position: 'relative',
+  cursor: 'pointer',
+  touchAction: 'none',
+  WebkitTapHighlightColor: 'transparent',
+  '@media print': {
+    colorAdjust: 'exact'
+  },
+  [`&.${_sliderClasses_js__WEBPACK_IMPORTED_MODULE_6__["default"].disabled}`]: {
+    pointerEvents: 'none',
+    cursor: 'default',
+    color: (theme.vars || theme).palette.grey[400]
+  },
+  [`&.${_sliderClasses_js__WEBPACK_IMPORTED_MODULE_6__["default"].dragging}`]: {
+    [`& .${_sliderClasses_js__WEBPACK_IMPORTED_MODULE_6__["default"].thumb}, & .${_sliderClasses_js__WEBPACK_IMPORTED_MODULE_6__["default"].track}`]: {
+      transition: 'none'
+    }
+  },
+  variants: [...Object.entries(theme.palette).filter((0,_utils_createSimplePaletteValueFilter_js__WEBPACK_IMPORTED_MODULE_7__["default"])()).map(([color]) => ({
+    props: {
+      color
+    },
+    style: {
+      color: (theme.vars || theme).palette[color].main
+    }
+  })), {
+    props: {
+      orientation: 'horizontal'
+    },
+    style: {
+      height: 4,
+      width: '100%',
+      padding: '13px 0',
+      // The primary input mechanism of the device includes a pointing device of limited accuracy.
+      '@media (pointer: coarse)': {
+        // Reach 42px touch target, about ~8mm on screen.
+        padding: '20px 0'
+      }
+    }
+  }, {
+    props: {
+      orientation: 'horizontal',
+      size: 'small'
+    },
+    style: {
+      height: 2
+    }
+  }, {
+    props: {
+      orientation: 'horizontal',
+      marked: true
+    },
+    style: {
+      marginBottom: 20
+    }
+  }, {
+    props: {
+      orientation: 'vertical'
+    },
+    style: {
+      height: '100%',
+      width: 4,
+      padding: '0 13px',
+      // The primary input mechanism of the device includes a pointing device of limited accuracy.
+      '@media (pointer: coarse)': {
+        // Reach 42px touch target, about ~8mm on screen.
+        padding: '0 20px'
+      }
+    }
+  }, {
+    props: {
+      orientation: 'vertical',
+      size: 'small'
+    },
+    style: {
+      width: 2
+    }
+  }, {
+    props: {
+      orientation: 'vertical',
+      marked: true
+    },
+    style: {
+      marginRight: 44
+    }
+  }]
+})));
+const SliderRail = (0,_zero_styled_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])('span', {
+  name: 'MuiSlider',
+  slot: 'Rail',
+  overridesResolver: (props, styles) => styles.rail
+})({
+  display: 'block',
+  position: 'absolute',
+  borderRadius: 'inherit',
+  backgroundColor: 'currentColor',
+  opacity: 0.38,
+  variants: [{
+    props: {
+      orientation: 'horizontal'
+    },
+    style: {
+      width: '100%',
+      height: 'inherit',
+      top: '50%',
+      transform: 'translateY(-50%)'
+    }
+  }, {
+    props: {
+      orientation: 'vertical'
+    },
+    style: {
+      height: '100%',
+      width: 'inherit',
+      left: '50%',
+      transform: 'translateX(-50%)'
+    }
+  }, {
+    props: {
+      track: 'inverted'
+    },
+    style: {
+      opacity: 1
+    }
+  }]
+});
+const SliderTrack = (0,_zero_styled_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])('span', {
+  name: 'MuiSlider',
+  slot: 'Track',
+  overridesResolver: (props, styles) => styles.track
+})((0,_utils_memoTheme_js__WEBPACK_IMPORTED_MODULE_5__["default"])(({
+  theme
+}) => {
+  return {
+    display: 'block',
+    position: 'absolute',
+    borderRadius: 'inherit',
+    border: '1px solid currentColor',
+    backgroundColor: 'currentColor',
+    transition: theme.transitions.create(['left', 'width', 'bottom', 'height'], {
+      duration: theme.transitions.duration.shortest
+    }),
+    variants: [{
+      props: {
+        size: 'small'
+      },
+      style: {
+        border: 'none'
+      }
+    }, {
+      props: {
+        orientation: 'horizontal'
+      },
+      style: {
+        height: 'inherit',
+        top: '50%',
+        transform: 'translateY(-50%)'
+      }
+    }, {
+      props: {
+        orientation: 'vertical'
+      },
+      style: {
+        width: 'inherit',
+        left: '50%',
+        transform: 'translateX(-50%)'
+      }
+    }, {
+      props: {
+        track: false
+      },
+      style: {
+        display: 'none'
+      }
+    }, ...Object.entries(theme.palette).filter((0,_utils_createSimplePaletteValueFilter_js__WEBPACK_IMPORTED_MODULE_7__["default"])()).map(([color]) => ({
+      props: {
+        color,
+        track: 'inverted'
+      },
+      style: {
+        ...(theme.vars ? {
+          backgroundColor: theme.vars.palette.Slider[`${color}Track`],
+          borderColor: theme.vars.palette.Slider[`${color}Track`]
+        } : {
+          backgroundColor: (0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_8__.lighten)(theme.palette[color].main, 0.62),
+          borderColor: (0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_8__.lighten)(theme.palette[color].main, 0.62),
+          ...theme.applyStyles('dark', {
+            backgroundColor: (0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_8__.darken)(theme.palette[color].main, 0.5)
+          }),
+          ...theme.applyStyles('dark', {
+            borderColor: (0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_8__.darken)(theme.palette[color].main, 0.5)
+          })
+        })
+      }
+    }))]
+  };
+}));
+const SliderThumb = (0,_zero_styled_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])('span', {
+  name: 'MuiSlider',
+  slot: 'Thumb',
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.thumb, styles[`thumbColor${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_4__["default"])(ownerState.color)}`], ownerState.size !== 'medium' && styles[`thumbSize${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_4__["default"])(ownerState.size)}`]];
+  }
+})((0,_utils_memoTheme_js__WEBPACK_IMPORTED_MODULE_5__["default"])(({
+  theme
+}) => ({
+  position: 'absolute',
+  width: 20,
+  height: 20,
+  boxSizing: 'border-box',
+  borderRadius: '50%',
+  outline: 0,
+  backgroundColor: 'currentColor',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
+    duration: theme.transitions.duration.shortest
+  }),
+  '&::before': {
+    position: 'absolute',
+    content: '""',
+    borderRadius: 'inherit',
+    width: '100%',
+    height: '100%',
+    boxShadow: (theme.vars || theme).shadows[2]
+  },
+  '&::after': {
+    position: 'absolute',
+    content: '""',
+    borderRadius: '50%',
+    // 42px is the hit target
+    width: 42,
+    height: 42,
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+  },
+  [`&.${_sliderClasses_js__WEBPACK_IMPORTED_MODULE_6__["default"].disabled}`]: {
+    '&:hover': {
+      boxShadow: 'none'
+    }
+  },
+  variants: [{
+    props: {
+      size: 'small'
+    },
+    style: {
+      width: 12,
+      height: 12,
+      '&::before': {
+        boxShadow: 'none'
+      }
+    }
+  }, {
+    props: {
+      orientation: 'horizontal'
+    },
+    style: {
+      top: '50%',
+      transform: 'translate(-50%, -50%)'
+    }
+  }, {
+    props: {
+      orientation: 'vertical'
+    },
+    style: {
+      left: '50%',
+      transform: 'translate(-50%, 50%)'
+    }
+  }, ...Object.entries(theme.palette).filter((0,_utils_createSimplePaletteValueFilter_js__WEBPACK_IMPORTED_MODULE_7__["default"])()).map(([color]) => ({
+    props: {
+      color
+    },
+    style: {
+      [`&:hover, &.${_sliderClasses_js__WEBPACK_IMPORTED_MODULE_6__["default"].focusVisible}`]: {
+        ...(theme.vars ? {
+          boxShadow: `0px 0px 0px 8px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`
+        } : {
+          boxShadow: `0px 0px 0px 8px ${(0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_8__.alpha)(theme.palette[color].main, 0.16)}`
+        }),
+        '@media (hover: none)': {
+          boxShadow: 'none'
+        }
+      },
+      [`&.${_sliderClasses_js__WEBPACK_IMPORTED_MODULE_6__["default"].active}`]: {
+        ...(theme.vars ? {
+          boxShadow: `0px 0px 0px 14px rgba(${theme.vars.palette[color].mainChannel} / 0.16)`
+        } : {
+          boxShadow: `0px 0px 0px 14px ${(0,_mui_system_colorManipulator__WEBPACK_IMPORTED_MODULE_8__.alpha)(theme.palette[color].main, 0.16)}`
+        })
+      }
+    }
+  }))]
+})));
+const SliderValueLabel = (0,_zero_styled_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_SliderValueLabel_js__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  name: 'MuiSlider',
+  slot: 'ValueLabel',
+  overridesResolver: (props, styles) => styles.valueLabel
+})((0,_utils_memoTheme_js__WEBPACK_IMPORTED_MODULE_5__["default"])(({
+  theme
+}) => ({
+  zIndex: 1,
+  whiteSpace: 'nowrap',
+  ...theme.typography.body2,
+  fontWeight: 500,
+  transition: theme.transitions.create(['transform'], {
+    duration: theme.transitions.duration.shortest
+  }),
+  position: 'absolute',
+  backgroundColor: (theme.vars || theme).palette.grey[600],
+  borderRadius: 2,
+  color: (theme.vars || theme).palette.common.white,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '0.25rem 0.75rem',
+  variants: [{
+    props: {
+      orientation: 'horizontal'
+    },
+    style: {
+      transform: 'translateY(-100%) scale(0)',
+      top: '-10px',
+      transformOrigin: 'bottom center',
+      '&::before': {
+        position: 'absolute',
+        content: '""',
+        width: 8,
+        height: 8,
+        transform: 'translate(-50%, 50%) rotate(45deg)',
+        backgroundColor: 'inherit',
+        bottom: 0,
+        left: '50%'
+      },
+      [`&.${_sliderClasses_js__WEBPACK_IMPORTED_MODULE_6__["default"].valueLabelOpen}`]: {
+        transform: 'translateY(-100%) scale(1)'
+      }
+    }
+  }, {
+    props: {
+      orientation: 'vertical'
+    },
+    style: {
+      transform: 'translateY(-50%) scale(0)',
+      right: '30px',
+      top: '50%',
+      transformOrigin: 'right center',
+      '&::before': {
+        position: 'absolute',
+        content: '""',
+        width: 8,
+        height: 8,
+        transform: 'translate(-50%, -50%) rotate(45deg)',
+        backgroundColor: 'inherit',
+        right: -8,
+        top: '50%'
+      },
+      [`&.${_sliderClasses_js__WEBPACK_IMPORTED_MODULE_6__["default"].valueLabelOpen}`]: {
+        transform: 'translateY(-50%) scale(1)'
+      }
+    }
+  }, {
+    props: {
+      size: 'small'
+    },
+    style: {
+      fontSize: theme.typography.pxToRem(12),
+      padding: '0.25rem 0.5rem'
+    }
+  }, {
+    props: {
+      orientation: 'vertical',
+      size: 'small'
+    },
+    style: {
+      right: '20px'
+    }
+  }]
+})));
+ true ? SliderValueLabel.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * @ignore
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().element).isRequired,
+  /**
+   * @ignore
+   */
+  index: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().number).isRequired,
+  /**
+   * @ignore
+   */
+  open: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool).isRequired,
+  /**
+   * @ignore
+   */
+  value: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().node)
+} : 0;
+
+const SliderMark = (0,_zero_styled_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])('span', {
+  name: 'MuiSlider',
+  slot: 'Mark',
+  shouldForwardProp: prop => (0,_styles_slotShouldForwardProp_js__WEBPACK_IMPORTED_MODULE_11__["default"])(prop) && prop !== 'markActive',
+  overridesResolver: (props, styles) => {
+    const {
+      markActive
+    } = props;
+    return [styles.mark, markActive && styles.markActive];
+  }
+})((0,_utils_memoTheme_js__WEBPACK_IMPORTED_MODULE_5__["default"])(({
+  theme
+}) => ({
+  position: 'absolute',
+  width: 2,
+  height: 2,
+  borderRadius: 1,
+  backgroundColor: 'currentColor',
+  variants: [{
+    props: {
+      orientation: 'horizontal'
+    },
+    style: {
+      top: '50%',
+      transform: 'translate(-1px, -50%)'
+    }
+  }, {
+    props: {
+      orientation: 'vertical'
+    },
+    style: {
+      left: '50%',
+      transform: 'translate(-50%, 1px)'
+    }
+  }, {
+    props: {
+      markActive: true
+    },
+    style: {
+      backgroundColor: (theme.vars || theme).palette.background.paper,
+      opacity: 0.8
+    }
+  }]
+})));
+const SliderMarkLabel = (0,_zero_styled_index_js__WEBPACK_IMPORTED_MODULE_3__["default"])('span', {
+  name: 'MuiSlider',
+  slot: 'MarkLabel',
+  shouldForwardProp: prop => (0,_styles_slotShouldForwardProp_js__WEBPACK_IMPORTED_MODULE_11__["default"])(prop) && prop !== 'markLabelActive',
+  overridesResolver: (props, styles) => styles.markLabel
+})((0,_utils_memoTheme_js__WEBPACK_IMPORTED_MODULE_5__["default"])(({
+  theme
+}) => ({
+  ...theme.typography.body2,
+  color: (theme.vars || theme).palette.text.secondary,
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  variants: [{
+    props: {
+      orientation: 'horizontal'
+    },
+    style: {
+      top: 30,
+      transform: 'translateX(-50%)',
+      '@media (pointer: coarse)': {
+        top: 40
+      }
+    }
+  }, {
+    props: {
+      orientation: 'vertical'
+    },
+    style: {
+      left: 36,
+      transform: 'translateY(50%)',
+      '@media (pointer: coarse)': {
+        left: 44
+      }
+    }
+  }, {
+    props: {
+      markLabelActive: true
+    },
+    style: {
+      color: (theme.vars || theme).palette.text.primary
+    }
+  }]
+})));
+const useUtilityClasses = ownerState => {
+  const {
+    disabled,
+    dragging,
+    marked,
+    orientation,
+    track,
+    classes,
+    color,
+    size
+  } = ownerState;
+  const slots = {
+    root: ['root', disabled && 'disabled', dragging && 'dragging', marked && 'marked', orientation === 'vertical' && 'vertical', track === 'inverted' && 'trackInverted', track === false && 'trackFalse', color && `color${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_4__["default"])(color)}`, size && `size${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_4__["default"])(size)}`],
+    rail: ['rail'],
+    track: ['track'],
+    mark: ['mark'],
+    markActive: ['markActive'],
+    markLabel: ['markLabel'],
+    markLabelActive: ['markLabelActive'],
+    valueLabel: ['valueLabel'],
+    thumb: ['thumb', disabled && 'disabled', size && `thumbSize${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_4__["default"])(size)}`, color && `thumbColor${(0,_utils_capitalize_js__WEBPACK_IMPORTED_MODULE_4__["default"])(color)}`],
+    active: ['active'],
+    disabled: ['disabled'],
+    focusVisible: ['focusVisible']
+  };
+  return (0,_mui_utils_composeClasses__WEBPACK_IMPORTED_MODULE_12__["default"])(slots, _sliderClasses_js__WEBPACK_IMPORTED_MODULE_6__.getSliderUtilityClass, classes);
+};
+const Forward = ({
+  children
+}) => children;
+const Slider = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function Slider(inputProps, ref) {
+  const props = (0,_DefaultPropsProvider_index_js__WEBPACK_IMPORTED_MODULE_13__.useDefaultProps)({
+    props: inputProps,
+    name: 'MuiSlider'
+  });
+  const isRtl = (0,_mui_system_RtlProvider__WEBPACK_IMPORTED_MODULE_14__.useRtl)();
+  const {
+    'aria-label': ariaLabel,
+    'aria-valuetext': ariaValuetext,
+    'aria-labelledby': ariaLabelledby,
+    // eslint-disable-next-line react/prop-types
+    component = 'span',
+    components = {},
+    componentsProps = {},
+    color = 'primary',
+    classes: classesProp,
+    className,
+    disableSwap = false,
+    disabled = false,
+    getAriaLabel,
+    getAriaValueText,
+    marks: marksProp = false,
+    max = 100,
+    min = 0,
+    name,
+    onChange,
+    onChangeCommitted,
+    orientation = 'horizontal',
+    shiftStep = 10,
+    size = 'medium',
+    step = 1,
+    scale = Identity,
+    slotProps,
+    slots,
+    tabIndex,
+    track = 'normal',
+    value: valueProp,
+    valueLabelDisplay = 'off',
+    valueLabelFormat = Identity,
+    ...other
+  } = props;
+  const ownerState = {
+    ...props,
+    isRtl,
+    max,
+    min,
+    classes: classesProp,
+    disabled,
+    disableSwap,
+    orientation,
+    marks: marksProp,
+    color,
+    size,
+    step,
+    shiftStep,
+    scale,
+    track,
+    valueLabelDisplay,
+    valueLabelFormat
+  };
+  const {
+    axisProps,
+    getRootProps,
+    getHiddenInputProps,
+    getThumbProps,
+    open,
+    active,
+    axis,
+    focusedThumbIndex,
+    range,
+    dragging,
+    marks,
+    values,
+    trackOffset,
+    trackLeap,
+    getThumbStyle
+  } = (0,_useSlider_js__WEBPACK_IMPORTED_MODULE_15__.useSlider)({
+    ...ownerState,
+    rootRef: ref
+  });
+  ownerState.marked = marks.length > 0 && marks.some(mark => mark.label);
+  ownerState.dragging = dragging;
+  ownerState.focusedThumbIndex = focusedThumbIndex;
+  const classes = useUtilityClasses(ownerState);
+
+  // support both `slots` and `components` for backward compatibility
+  const RootSlot = slots?.root ?? components.Root ?? SliderRoot;
+  const RailSlot = slots?.rail ?? components.Rail ?? SliderRail;
+  const TrackSlot = slots?.track ?? components.Track ?? SliderTrack;
+  const ThumbSlot = slots?.thumb ?? components.Thumb ?? SliderThumb;
+  const ValueLabelSlot = slots?.valueLabel ?? components.ValueLabel ?? SliderValueLabel;
+  const MarkSlot = slots?.mark ?? components.Mark ?? SliderMark;
+  const MarkLabelSlot = slots?.markLabel ?? components.MarkLabel ?? SliderMarkLabel;
+  const InputSlot = slots?.input ?? components.Input ?? 'input';
+  const rootSlotProps = slotProps?.root ?? componentsProps.root;
+  const railSlotProps = slotProps?.rail ?? componentsProps.rail;
+  const trackSlotProps = slotProps?.track ?? componentsProps.track;
+  const thumbSlotProps = slotProps?.thumb ?? componentsProps.thumb;
+  const valueLabelSlotProps = slotProps?.valueLabel ?? componentsProps.valueLabel;
+  const markSlotProps = slotProps?.mark ?? componentsProps.mark;
+  const markLabelSlotProps = slotProps?.markLabel ?? componentsProps.markLabel;
+  const inputSlotProps = slotProps?.input ?? componentsProps.input;
+  const rootProps = (0,_mui_utils_useSlotProps__WEBPACK_IMPORTED_MODULE_16__["default"])({
+    elementType: RootSlot,
+    getSlotProps: getRootProps,
+    externalSlotProps: rootSlotProps,
+    externalForwardedProps: other,
+    additionalProps: {
+      ...((0,_utils_shouldSpreadAdditionalProps_js__WEBPACK_IMPORTED_MODULE_17__["default"])(RootSlot) && {
+        as: component
+      })
+    },
+    ownerState: {
+      ...ownerState,
+      ...rootSlotProps?.ownerState
+    },
+    className: [classes.root, className]
+  });
+  const railProps = (0,_mui_utils_useSlotProps__WEBPACK_IMPORTED_MODULE_16__["default"])({
+    elementType: RailSlot,
+    externalSlotProps: railSlotProps,
+    ownerState,
+    className: classes.rail
+  });
+  const trackProps = (0,_mui_utils_useSlotProps__WEBPACK_IMPORTED_MODULE_16__["default"])({
+    elementType: TrackSlot,
+    externalSlotProps: trackSlotProps,
+    additionalProps: {
+      style: {
+        ...axisProps[axis].offset(trackOffset),
+        ...axisProps[axis].leap(trackLeap)
+      }
+    },
+    ownerState: {
+      ...ownerState,
+      ...trackSlotProps?.ownerState
+    },
+    className: classes.track
+  });
+  const thumbProps = (0,_mui_utils_useSlotProps__WEBPACK_IMPORTED_MODULE_16__["default"])({
+    elementType: ThumbSlot,
+    getSlotProps: getThumbProps,
+    externalSlotProps: thumbSlotProps,
+    ownerState: {
+      ...ownerState,
+      ...thumbSlotProps?.ownerState
+    },
+    className: classes.thumb
+  });
+  const valueLabelProps = (0,_mui_utils_useSlotProps__WEBPACK_IMPORTED_MODULE_16__["default"])({
+    elementType: ValueLabelSlot,
+    externalSlotProps: valueLabelSlotProps,
+    ownerState: {
+      ...ownerState,
+      ...valueLabelSlotProps?.ownerState
+    },
+    className: classes.valueLabel
+  });
+  const markProps = (0,_mui_utils_useSlotProps__WEBPACK_IMPORTED_MODULE_16__["default"])({
+    elementType: MarkSlot,
+    externalSlotProps: markSlotProps,
+    ownerState,
+    className: classes.mark
+  });
+  const markLabelProps = (0,_mui_utils_useSlotProps__WEBPACK_IMPORTED_MODULE_16__["default"])({
+    elementType: MarkLabelSlot,
+    externalSlotProps: markLabelSlotProps,
+    ownerState,
+    className: classes.markLabel
+  });
+  const inputSliderProps = (0,_mui_utils_useSlotProps__WEBPACK_IMPORTED_MODULE_16__["default"])({
+    elementType: InputSlot,
+    getSlotProps: getHiddenInputProps,
+    externalSlotProps: inputSlotProps,
+    ownerState
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(RootSlot, {
+    ...rootProps,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(RailSlot, {
+      ...railProps
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(TrackSlot, {
+      ...trackProps
+    }), marks.filter(mark => mark.value >= min && mark.value <= max).map((mark, index) => {
+      const percent = (0,_useSlider_js__WEBPACK_IMPORTED_MODULE_15__.valueToPercent)(mark.value, min, max);
+      const style = axisProps[axis].offset(percent);
+      let markActive;
+      if (track === false) {
+        markActive = values.includes(mark.value);
+      } else {
+        markActive = track === 'normal' && (range ? mark.value >= values[0] && mark.value <= values[values.length - 1] : mark.value <= values[0]) || track === 'inverted' && (range ? mark.value <= values[0] || mark.value >= values[values.length - 1] : mark.value >= values[0]);
+      }
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(MarkSlot, {
+          "data-index": index,
+          ...markProps,
+          ...(!(0,_utils_isHostComponent_js__WEBPACK_IMPORTED_MODULE_18__["default"])(MarkSlot) && {
+            markActive
+          }),
+          style: {
+            ...style,
+            ...markProps.style
+          },
+          className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(markProps.className, markActive && classes.markActive)
+        }), mark.label != null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(MarkLabelSlot, {
+          "aria-hidden": true,
+          "data-index": index,
+          ...markLabelProps,
+          ...(!(0,_utils_isHostComponent_js__WEBPACK_IMPORTED_MODULE_18__["default"])(MarkLabelSlot) && {
+            markLabelActive: markActive
+          }),
+          style: {
+            ...style,
+            ...markLabelProps.style
+          },
+          className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(classes.markLabel, markLabelProps.className, markActive && classes.markLabelActive),
+          children: mark.label
+        }) : null]
+      }, index);
+    }), values.map((value, index) => {
+      const percent = (0,_useSlider_js__WEBPACK_IMPORTED_MODULE_15__.valueToPercent)(value, min, max);
+      const style = axisProps[axis].offset(percent);
+      const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabelSlot;
+      return /*#__PURE__*/ /* TODO v6: Change component structure. It will help in avoiding the complicated React.cloneElement API added in SliderValueLabel component. Should be: Thumb -> Input, ValueLabel. Follow Joy UI's Slider structure. */(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ValueLabelComponent, {
+        ...(!(0,_utils_isHostComponent_js__WEBPACK_IMPORTED_MODULE_18__["default"])(ValueLabelComponent) && {
+          valueLabelFormat,
+          valueLabelDisplay,
+          value: typeof valueLabelFormat === 'function' ? valueLabelFormat(scale(value), index) : valueLabelFormat,
+          index,
+          open: open === index || active === index || valueLabelDisplay === 'on',
+          disabled
+        }),
+        ...valueLabelProps,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ThumbSlot, {
+          "data-index": index,
+          ...thumbProps,
+          className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(classes.thumb, thumbProps.className, active === index && classes.active, focusedThumbIndex === index && classes.focusVisible),
+          style: {
+            ...style,
+            ...getThumbStyle(index),
+            ...thumbProps.style
+          },
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(InputSlot, {
+            "data-index": index,
+            "aria-label": getAriaLabel ? getAriaLabel(index) : ariaLabel,
+            "aria-valuenow": scale(value),
+            "aria-labelledby": ariaLabelledby,
+            "aria-valuetext": getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext,
+            value: values[index],
+            ...inputSliderProps
+          })
+        })
+      }, index);
+    })]
+  });
+});
+ true ? Slider.propTypes /* remove-proptypes */ = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The label of the slider.
+   */
+  'aria-label': (0,_mui_utils_chainPropTypes__WEBPACK_IMPORTED_MODULE_19__["default"])((prop_types__WEBPACK_IMPORTED_MODULE_10___default().string), props => {
+    const range = Array.isArray(props.value || props.defaultValue);
+    if (range && props['aria-label'] != null) {
+      return new Error('MUI: You need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.');
+    }
+    return null;
+  }),
+  /**
+   * The id of the element containing a label for the slider.
+   */
+  'aria-labelledby': (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string),
+  /**
+   * A string value that provides a user-friendly name for the current value of the slider.
+   */
+  'aria-valuetext': (0,_mui_utils_chainPropTypes__WEBPACK_IMPORTED_MODULE_19__["default"])((prop_types__WEBPACK_IMPORTED_MODULE_10___default().string), props => {
+    const range = Array.isArray(props.value || props.defaultValue);
+    if (range && props['aria-valuetext'] != null) {
+      return new Error('MUI: You need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.');
+    }
+    return null;
+  }),
+  /**
+   * @ignore
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().node),
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object),
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string),
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   * @default 'primary'
+   */
+  color: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string)]),
+  /**
+   * The components used for each slot inside.
+   *
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   *
+   * @default {}
+   */
+  components: prop_types__WEBPACK_IMPORTED_MODULE_10___default().shape({
+    Input: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    Mark: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    MarkLabel: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    Rail: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    Root: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    Thumb: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    Track: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    ValueLabel: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType)
+  }),
+  /**
+   * The extra props for the slot components.
+   * You can override the existing props or add new ones.
+   *
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   *
+   * @default {}
+   */
+  componentsProps: prop_types__WEBPACK_IMPORTED_MODULE_10___default().shape({
+    input: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    mark: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    markLabel: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    rail: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    root: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    thumb: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    track: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    valueLabel: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), prop_types__WEBPACK_IMPORTED_MODULE_10___default().shape({
+      children: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().element),
+      className: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string),
+      open: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool),
+      style: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object),
+      value: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().node),
+      valueLabelDisplay: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['auto', 'off', 'on'])
+    })])
+  }),
+  /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_10___default().arrayOf((prop_types__WEBPACK_IMPORTED_MODULE_10___default().number)), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().number)]),
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool),
+  /**
+   * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
+   * @default false
+   */
+  disableSwap: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool),
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
+   * This is important for screen reader users.
+   * @param {number} index The thumb label's index to format.
+   * @returns {string}
+   */
+  getAriaLabel: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func),
+  /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
+   * This is important for screen reader users.
+   * @param {number} value The thumb label's value to format.
+   * @param {number} index The thumb label's index to format.
+   * @returns {string}
+   */
+  getAriaValueText: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func),
+  /**
+   * Marks indicate predetermined values to which the user can move the slider.
+   * If `true` the marks are spaced according the value of the `step` prop.
+   * If an array, it should contain objects with `value` and an optional `label` keys.
+   * @default false
+   */
+  marks: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_10___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_10___default().shape({
+    label: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().node),
+    value: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().number).isRequired
+  })), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool)]),
+  /**
+   * The maximum allowed value of the slider.
+   * Should not be equal to min.
+   * @default 100
+   */
+  max: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().number),
+  /**
+   * The minimum allowed value of the slider.
+   * Should not be equal to max.
+   * @default 0
+   */
+  min: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().number),
+  /**
+   * Name attribute of the hidden `input` element.
+   */
+  name: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string),
+  /**
+   * Callback function that is fired when the slider's value changed.
+   *
+   * @param {Event} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (any).
+   * **Warning**: This is a generic event not a change event.
+   * @param {number | number[]} value The new value.
+   * @param {number} activeThumb Index of the currently moved thumb.
+   */
+  onChange: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func),
+  /**
+   * Callback function that is fired when the `mouseup` is triggered.
+   *
+   * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {number | number[]} value The new value.
+   */
+  onChangeCommitted: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func),
+  /**
+   * The component orientation.
+   * @default 'horizontal'
+   */
+  orientation: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['horizontal', 'vertical']),
+  /**
+   * A transformation function, to change the scale of the slider.
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
+   */
+  scale: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func),
+  /**
+   * The granularity with which the slider can step through values when using Page Up/Page Down or Shift + Arrow Up/Arrow Down.
+   * @default 10
+   */
+  shiftStep: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().number),
+  /**
+   * The size of the slider.
+   * @default 'medium'
+   */
+  size: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['small', 'medium']), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string)]),
+  /**
+   * The props used for each slot inside the Slider.
+   * @default {}
+   */
+  slotProps: prop_types__WEBPACK_IMPORTED_MODULE_10___default().shape({
+    input: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    mark: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    markLabel: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    rail: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    root: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    thumb: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    track: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+    valueLabel: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), prop_types__WEBPACK_IMPORTED_MODULE_10___default().shape({
+      children: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().element),
+      className: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string),
+      open: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool),
+      style: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object),
+      value: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().node),
+      valueLabelDisplay: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['auto', 'off', 'on'])
+    })])
+  }),
+  /**
+   * The components used for each slot inside the Slider.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: prop_types__WEBPACK_IMPORTED_MODULE_10___default().shape({
+    input: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    mark: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    markLabel: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    rail: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    root: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    thumb: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    track: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType),
+    valueLabel: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().elementType)
+  }),
+  /**
+   * The granularity with which the slider can step through values. (A "discrete" slider.)
+   * The `min` prop serves as the origin for the valid values.
+   * We recommend (max - min) to be evenly divisible by the step.
+   *
+   * When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
+   * @default 1
+   */
+  step: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().number),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_10___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool)])), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object)]),
+  /**
+   * Tab index attribute of the hidden `input` element.
+   */
+  tabIndex: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().number),
+  /**
+   * The track presentation:
+   *
+   * - `normal` the track will render a bar representing the slider value.
+   * - `inverted` the track will render a bar representing the remaining slider value.
+   * - `false` the track will render without a bar.
+   * @default 'normal'
+   */
+  track: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['inverted', 'normal', false]),
+  /**
+   * The value of the slider.
+   * For ranged sliders, provide an array with two values.
+   */
+  value: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_10___default().arrayOf((prop_types__WEBPACK_IMPORTED_MODULE_10___default().number)), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().number)]),
+  /**
+   * Controls when the value label is displayed:
+   *
+   * - `auto` the value label will display when the thumb is hovered or focused.
+   * - `on` will display persistently.
+   * - `off` will never display.
+   * @default 'off'
+   */
+  valueLabelDisplay: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['auto', 'off', 'on']),
+  /**
+   * The format function the value label's value.
+   *
+   * When a function is provided, it should have the following signature:
+   *
+   * - {number} value The value label's value to format
+   * - {number} index The value label's index to format
+   * @param {any} x
+   * @returns {any}
+   * @default function Identity(x) {
+   *   return x;
+   * }
+   */
+  valueLabelFormat: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().string)])
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Slider);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/Slider/SliderValueLabel.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@mui/material/Slider/SliderValueLabel.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SliderValueLabel)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.mjs");
+/* harmony import */ var _sliderClasses_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sliderClasses.js */ "./node_modules/@mui/material/Slider/sliderClasses.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+'use client';
+
+
+
+
+
+
+const useValueLabelClasses = props => {
+  const {
+    open
+  } = props;
+  const utilityClasses = {
+    offset: (0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(open && _sliderClasses_js__WEBPACK_IMPORTED_MODULE_3__["default"].valueLabelOpen),
+    circle: _sliderClasses_js__WEBPACK_IMPORTED_MODULE_3__["default"].valueLabelCircle,
+    label: _sliderClasses_js__WEBPACK_IMPORTED_MODULE_3__["default"].valueLabelLabel
+  };
+  return utilityClasses;
+};
+
+/**
+ * @ignore - internal component.
+ */
+function SliderValueLabel(props) {
+  const {
+    children,
+    className,
+    value
+  } = props;
+  const classes = useValueLabelClasses(props);
+  if (!children) {
+    return null;
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(children, {
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(children.props.className)
+  }, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [children.props.children, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      className: (0,clsx__WEBPACK_IMPORTED_MODULE_1__["default"])(classes.offset, className),
+      "aria-hidden": true,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        className: classes.circle,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          className: classes.label,
+          children: value
+        })
+      })
+    })]
+  }));
+}
+ true ? SliderValueLabel.propTypes = {
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().element).isRequired,
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
+  value: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().node)
+} : 0;
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/Slider/sliderClasses.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@mui/material/Slider/sliderClasses.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   getSliderUtilityClass: () => (/* binding */ getSliderUtilityClass)
+/* harmony export */ });
+/* harmony import */ var _mui_utils_generateUtilityClasses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/utils/generateUtilityClasses */ "./node_modules/@mui/utils/esm/generateUtilityClasses/generateUtilityClasses.js");
+/* harmony import */ var _mui_utils_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/utils/generateUtilityClass */ "./node_modules/@mui/utils/esm/generateUtilityClass/generateUtilityClass.js");
+
+
+function getSliderUtilityClass(slot) {
+  return (0,_mui_utils_generateUtilityClass__WEBPACK_IMPORTED_MODULE_0__["default"])('MuiSlider', slot);
+}
+const sliderClasses = (0,_mui_utils_generateUtilityClasses__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiSlider', ['root', 'active', 'colorPrimary', 'colorSecondary', 'colorError', 'colorInfo', 'colorSuccess', 'colorWarning', 'disabled', 'dragging', 'focusVisible', 'mark', 'markActive', 'marked', 'markLabel', 'markLabelActive', 'rail', 'sizeSmall', 'thumb', 'thumbColorPrimary', 'thumbColorSecondary', 'thumbColorError', 'thumbColorSuccess', 'thumbColorInfo', 'thumbColorWarning', 'track', 'trackInverted', 'trackFalse', 'thumbSizeSmall', 'valueLabel', 'valueLabelOpen', 'valueLabelCircle', 'valueLabelLabel', 'vertical']);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sliderClasses);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/Slider/useSlider.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@mui/material/Slider/useSlider.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Identity: () => (/* binding */ Identity),
+/* harmony export */   useSlider: () => (/* binding */ useSlider),
+/* harmony export */   valueToPercent: () => (/* binding */ valueToPercent)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/ownerDocument/ownerDocument.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/useControlled/useControlled.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/clamp/clamp.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/useForkRef/useForkRef.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/isFocusVisible/isFocusVisible.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/useEnhancedEffect/useEnhancedEffect.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/useEventCallback/useEventCallback.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/visuallyHidden/visuallyHidden.js");
+/* harmony import */ var _mui_utils_extractEventHandlers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/utils/extractEventHandlers */ "./node_modules/@mui/utils/esm/extractEventHandlers/extractEventHandlers.js");
+/* harmony import */ var _utils_areArraysEqual_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/areArraysEqual.js */ "./node_modules/@mui/material/utils/areArraysEqual.js");
+'use client';
+
+
+
+
+
+const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
+function getNewValue(currentValue, step, direction, min, max) {
+  return direction === 1 ? Math.min(currentValue + step, max) : Math.max(currentValue - step, min);
+}
+function asc(a, b) {
+  return a - b;
+}
+function findClosest(values, currentValue) {
+  const {
+    index: closestIndex
+  } = values.reduce((acc, value, index) => {
+    const distance = Math.abs(currentValue - value);
+    if (acc === null || distance < acc.distance || distance === acc.distance) {
+      return {
+        distance,
+        index
+      };
+    }
+    return acc;
+  }, null) ?? {};
+  return closestIndex;
+}
+function trackFinger(event, touchId) {
+  // The event is TouchEvent
+  if (touchId.current !== undefined && event.changedTouches) {
+    const touchEvent = event;
+    for (let i = 0; i < touchEvent.changedTouches.length; i += 1) {
+      const touch = touchEvent.changedTouches[i];
+      if (touch.identifier === touchId.current) {
+        return {
+          x: touch.clientX,
+          y: touch.clientY
+        };
+      }
+    }
+    return false;
+  }
+
+  // The event is MouseEvent
+  return {
+    x: event.clientX,
+    y: event.clientY
+  };
+}
+function valueToPercent(value, min, max) {
+  return (value - min) * 100 / (max - min);
+}
+function percentToValue(percent, min, max) {
+  return (max - min) * percent + min;
+}
+function getDecimalPrecision(num) {
+  // This handles the case when num is very small (0.00000001), js will turn this into 1e-8.
+  // When num is bigger than 1 or less than -1 it won't get converted to this notation so it's fine.
+  if (Math.abs(num) < 1) {
+    const parts = num.toExponential().split('e-');
+    const matissaDecimalPart = parts[0].split('.')[1];
+    return (matissaDecimalPart ? matissaDecimalPart.length : 0) + parseInt(parts[1], 10);
+  }
+  const decimalPart = num.toString().split('.')[1];
+  return decimalPart ? decimalPart.length : 0;
+}
+function roundValueToStep(value, step, min) {
+  const nearest = Math.round((value - min) / step) * step + min;
+  return Number(nearest.toFixed(getDecimalPrecision(step)));
+}
+function setValueIndex({
+  values,
+  newValue,
+  index
+}) {
+  const output = values.slice();
+  output[index] = newValue;
+  return output.sort(asc);
+}
+function focusThumb({
+  sliderRef,
+  activeIndex,
+  setActive
+}) {
+  const doc = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__["default"])(sliderRef.current);
+  if (!sliderRef.current?.contains(doc.activeElement) || Number(doc?.activeElement?.getAttribute('data-index')) !== activeIndex) {
+    sliderRef.current?.querySelector(`[type="range"][data-index="${activeIndex}"]`).focus();
+  }
+  if (setActive) {
+    setActive(activeIndex);
+  }
+}
+function areValuesEqual(newValue, oldValue) {
+  if (typeof newValue === 'number' && typeof oldValue === 'number') {
+    return newValue === oldValue;
+  }
+  if (typeof newValue === 'object' && typeof oldValue === 'object') {
+    return (0,_utils_areArraysEqual_js__WEBPACK_IMPORTED_MODULE_2__["default"])(newValue, oldValue);
+  }
+  return false;
+}
+const axisProps = {
+  horizontal: {
+    offset: percent => ({
+      left: `${percent}%`
+    }),
+    leap: percent => ({
+      width: `${percent}%`
+    })
+  },
+  'horizontal-reverse': {
+    offset: percent => ({
+      right: `${percent}%`
+    }),
+    leap: percent => ({
+      width: `${percent}%`
+    })
+  },
+  vertical: {
+    offset: percent => ({
+      bottom: `${percent}%`
+    }),
+    leap: percent => ({
+      height: `${percent}%`
+    })
+  }
+};
+const Identity = x => x;
+
+// TODO: remove support for Safari < 13.
+// https://caniuse.com/#search=touch-action
+//
+// Safari, on iOS, supports touch action since v13.
+// Over 80% of the iOS phones are compatible
+// in August 2020.
+// Utilizing the CSS.supports method to check if touch-action is supported.
+// Since CSS.supports is supported on all but Edge@12 and IE and touch-action
+// is supported on both Edge@12 and IE if CSS.supports is not available that means that
+// touch-action will be supported
+let cachedSupportsTouchActionNone;
+function doesSupportTouchActionNone() {
+  if (cachedSupportsTouchActionNone === undefined) {
+    if (typeof CSS !== 'undefined' && typeof CSS.supports === 'function') {
+      cachedSupportsTouchActionNone = CSS.supports('touch-action', 'none');
+    } else {
+      cachedSupportsTouchActionNone = true;
+    }
+  }
+  return cachedSupportsTouchActionNone;
+}
+/**
+ *
+ * Demos:
+ *
+ * - [Slider](https://mui.com/base-ui/react-slider/#hook)
+ *
+ * API:
+ *
+ * - [useSlider API](https://mui.com/base-ui/react-slider/hooks-api/#use-slider)
+ */
+function useSlider(parameters) {
+  const {
+    'aria-labelledby': ariaLabelledby,
+    defaultValue,
+    disabled = false,
+    disableSwap = false,
+    isRtl = false,
+    marks: marksProp = false,
+    max = 100,
+    min = 0,
+    name,
+    onChange,
+    onChangeCommitted,
+    orientation = 'horizontal',
+    rootRef: ref,
+    scale = Identity,
+    step = 1,
+    shiftStep = 10,
+    tabIndex,
+    value: valueProp
+  } = parameters;
+  const touchId = react__WEBPACK_IMPORTED_MODULE_0__.useRef(undefined);
+  // We can't use the :active browser pseudo-classes.
+  // - The active state isn't triggered when clicking on the rail.
+  // - The active state isn't transferred when inversing a range slider.
+  const [active, setActive] = react__WEBPACK_IMPORTED_MODULE_0__.useState(-1);
+  const [open, setOpen] = react__WEBPACK_IMPORTED_MODULE_0__.useState(-1);
+  const [dragging, setDragging] = react__WEBPACK_IMPORTED_MODULE_0__.useState(false);
+  const moveCount = react__WEBPACK_IMPORTED_MODULE_0__.useRef(0);
+  // lastChangedValue is updated whenever onChange is triggered.
+  const lastChangedValue = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  const [valueDerived, setValueState] = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_3__["default"])({
+    controlled: valueProp,
+    default: defaultValue ?? min,
+    name: 'Slider'
+  });
+  const handleChange = onChange && ((event, value, thumbIndex) => {
+    // Redefine target to allow name and value to be read.
+    // This allows seamless integration with the most popular form libraries.
+    // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
+    // Clone the event to not override `target` of the original event.
+    const nativeEvent = event.nativeEvent || event;
+    // @ts-ignore The nativeEvent is function, not object
+    const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
+    Object.defineProperty(clonedEvent, 'target', {
+      writable: true,
+      value: {
+        value,
+        name
+      }
+    });
+    lastChangedValue.current = value;
+    onChange(clonedEvent, value, thumbIndex);
+  });
+  const range = Array.isArray(valueDerived);
+  let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
+  values = values.map(value => value == null ? min : (0,_mui_utils__WEBPACK_IMPORTED_MODULE_4__["default"])(value, min, max));
+  const marks = marksProp === true && step !== null ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
+    value: min + step * index
+  })) : marksProp || [];
+  const marksValues = marks.map(mark => mark.value);
+  const [focusedThumbIndex, setFocusedThumbIndex] = react__WEBPACK_IMPORTED_MODULE_0__.useState(-1);
+  const sliderRef = react__WEBPACK_IMPORTED_MODULE_0__.useRef(null);
+  const handleRef = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_5__["default"])(ref, sliderRef);
+  const createHandleHiddenInputFocus = otherHandlers => event => {
+    const index = Number(event.currentTarget.getAttribute('data-index'));
+    if ((0,_mui_utils__WEBPACK_IMPORTED_MODULE_6__["default"])(event.target)) {
+      setFocusedThumbIndex(index);
+    }
+    setOpen(index);
+    otherHandlers?.onFocus?.(event);
+  };
+  const createHandleHiddenInputBlur = otherHandlers => event => {
+    if (!(0,_mui_utils__WEBPACK_IMPORTED_MODULE_6__["default"])(event.target)) {
+      setFocusedThumbIndex(-1);
+    }
+    setOpen(-1);
+    otherHandlers?.onBlur?.(event);
+  };
+  const changeValue = (event, valueInput) => {
+    const index = Number(event.currentTarget.getAttribute('data-index'));
+    const value = values[index];
+    const marksIndex = marksValues.indexOf(value);
+    let newValue = valueInput;
+    if (marks && step == null) {
+      const maxMarksValue = marksValues[marksValues.length - 1];
+      if (newValue >= maxMarksValue) {
+        newValue = maxMarksValue;
+      } else if (newValue <= marksValues[0]) {
+        newValue = marksValues[0];
+      } else {
+        newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
+      }
+    }
+    newValue = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_4__["default"])(newValue, min, max);
+    if (range) {
+      // Bound the new value to the thumb's neighbours.
+      if (disableSwap) {
+        newValue = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_4__["default"])(newValue, values[index - 1] || -Infinity, values[index + 1] || Infinity);
+      }
+      const previousValue = newValue;
+      newValue = setValueIndex({
+        values,
+        newValue,
+        index
+      });
+      let activeIndex = index;
+
+      // Potentially swap the index if needed.
+      if (!disableSwap) {
+        activeIndex = newValue.indexOf(previousValue);
+      }
+      focusThumb({
+        sliderRef,
+        activeIndex
+      });
+    }
+    setValueState(newValue);
+    setFocusedThumbIndex(index);
+    if (handleChange && !areValuesEqual(newValue, valueDerived)) {
+      handleChange(event, newValue, index);
+    }
+    if (onChangeCommitted) {
+      onChangeCommitted(event, lastChangedValue.current ?? newValue);
+    }
+  };
+  const createHandleHiddenInputKeyDown = otherHandlers => event => {
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'PageUp', 'PageDown', 'Home', 'End'].includes(event.key)) {
+      event.preventDefault();
+      const index = Number(event.currentTarget.getAttribute('data-index'));
+      const value = values[index];
+      let newValue = null;
+      // Keys actions that change the value by more than the most granular `step`
+      // value are only applied if the step not `null`.
+      // When step is `null`, the `marks` prop is used instead to define valid values.
+      if (step != null) {
+        const stepSize = event.shiftKey ? shiftStep : step;
+        switch (event.key) {
+          case 'ArrowUp':
+            newValue = getNewValue(value, stepSize, 1, min, max);
+            break;
+          case 'ArrowRight':
+            newValue = getNewValue(value, stepSize, isRtl ? -1 : 1, min, max);
+            break;
+          case 'ArrowDown':
+            newValue = getNewValue(value, stepSize, -1, min, max);
+            break;
+          case 'ArrowLeft':
+            newValue = getNewValue(value, stepSize, isRtl ? 1 : -1, min, max);
+            break;
+          case 'PageUp':
+            newValue = getNewValue(value, shiftStep, 1, min, max);
+            break;
+          case 'PageDown':
+            newValue = getNewValue(value, shiftStep, -1, min, max);
+            break;
+          case 'Home':
+            newValue = min;
+            break;
+          case 'End':
+            newValue = max;
+            break;
+          default:
+            break;
+        }
+      } else if (marks) {
+        const maxMarksValue = marksValues[marksValues.length - 1];
+        const currentMarkIndex = marksValues.indexOf(value);
+        const decrementKeys = [isRtl ? 'ArrowRight' : 'ArrowLeft', 'ArrowDown', 'PageDown', 'Home'];
+        const incrementKeys = [isRtl ? 'ArrowLeft' : 'ArrowRight', 'ArrowUp', 'PageUp', 'End'];
+        if (decrementKeys.includes(event.key)) {
+          if (currentMarkIndex === 0) {
+            newValue = marksValues[0];
+          } else {
+            newValue = marksValues[currentMarkIndex - 1];
+          }
+        } else if (incrementKeys.includes(event.key)) {
+          if (currentMarkIndex === marksValues.length - 1) {
+            newValue = maxMarksValue;
+          } else {
+            newValue = marksValues[currentMarkIndex + 1];
+          }
+        }
+      }
+      if (newValue != null) {
+        changeValue(event, newValue);
+      }
+    }
+    otherHandlers?.onKeyDown?.(event);
+  };
+  (0,_mui_utils__WEBPACK_IMPORTED_MODULE_7__["default"])(() => {
+    if (disabled && sliderRef.current.contains(document.activeElement)) {
+      // This is necessary because Firefox and Safari will keep focus
+      // on a disabled element:
+      // https://codesandbox.io/p/sandbox/mui-pr-22247-forked-h151h?file=/src/App.js
+      // @ts-ignore
+      document.activeElement?.blur();
+    }
+  }, [disabled]);
+  if (disabled && active !== -1) {
+    setActive(-1);
+  }
+  if (disabled && focusedThumbIndex !== -1) {
+    setFocusedThumbIndex(-1);
+  }
+  const createHandleHiddenInputChange = otherHandlers => event => {
+    otherHandlers.onChange?.(event);
+    // this handles value change by Pointer or Touch events
+    // @ts-ignore
+    changeValue(event, event.target.valueAsNumber);
+  };
+  const previousIndex = react__WEBPACK_IMPORTED_MODULE_0__.useRef(undefined);
+  let axis = orientation;
+  if (isRtl && orientation === 'horizontal') {
+    axis += '-reverse';
+  }
+  const getFingerNewValue = ({
+    finger,
+    move = false
+  }) => {
+    const {
+      current: slider
+    } = sliderRef;
+    const {
+      width,
+      height,
+      bottom,
+      left
+    } = slider.getBoundingClientRect();
+    let percent;
+    if (axis.startsWith('vertical')) {
+      percent = (bottom - finger.y) / height;
+    } else {
+      percent = (finger.x - left) / width;
+    }
+    if (axis.includes('-reverse')) {
+      percent = 1 - percent;
+    }
+    let newValue;
+    newValue = percentToValue(percent, min, max);
+    if (step) {
+      newValue = roundValueToStep(newValue, step, min);
+    } else {
+      const closestIndex = findClosest(marksValues, newValue);
+      newValue = marksValues[closestIndex];
+    }
+    newValue = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_4__["default"])(newValue, min, max);
+    let activeIndex = 0;
+    if (range) {
+      if (!move) {
+        activeIndex = findClosest(values, newValue);
+      } else {
+        activeIndex = previousIndex.current;
+      }
+
+      // Bound the new value to the thumb's neighbours.
+      if (disableSwap) {
+        newValue = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_4__["default"])(newValue, values[activeIndex - 1] || -Infinity, values[activeIndex + 1] || Infinity);
+      }
+      const previousValue = newValue;
+      newValue = setValueIndex({
+        values,
+        newValue,
+        index: activeIndex
+      });
+
+      // Potentially swap the index if needed.
+      if (!(disableSwap && move)) {
+        activeIndex = newValue.indexOf(previousValue);
+        previousIndex.current = activeIndex;
+      }
+    }
+    return {
+      newValue,
+      activeIndex
+    };
+  };
+  const handleTouchMove = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_8__["default"])(nativeEvent => {
+    const finger = trackFinger(nativeEvent, touchId);
+    if (!finger) {
+      return;
+    }
+    moveCount.current += 1;
+
+    // Cancel move in case some other element consumed a mouseup event and it was not fired.
+    // @ts-ignore buttons doesn't not exists on touch event
+    if (nativeEvent.type === 'mousemove' && nativeEvent.buttons === 0) {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      handleTouchEnd(nativeEvent);
+      return;
+    }
+    const {
+      newValue,
+      activeIndex
+    } = getFingerNewValue({
+      finger,
+      move: true
+    });
+    focusThumb({
+      sliderRef,
+      activeIndex,
+      setActive
+    });
+    setValueState(newValue);
+    if (!dragging && moveCount.current > INTENTIONAL_DRAG_COUNT_THRESHOLD) {
+      setDragging(true);
+    }
+    if (handleChange && !areValuesEqual(newValue, valueDerived)) {
+      handleChange(nativeEvent, newValue, activeIndex);
+    }
+  });
+  const handleTouchEnd = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_8__["default"])(nativeEvent => {
+    const finger = trackFinger(nativeEvent, touchId);
+    setDragging(false);
+    if (!finger) {
+      return;
+    }
+    const {
+      newValue
+    } = getFingerNewValue({
+      finger,
+      move: true
+    });
+    setActive(-1);
+    if (nativeEvent.type === 'touchend') {
+      setOpen(-1);
+    }
+    if (onChangeCommitted) {
+      onChangeCommitted(nativeEvent, lastChangedValue.current ?? newValue);
+    }
+    touchId.current = undefined;
+
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    stopListening();
+  });
+  const handleTouchStart = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_8__["default"])(nativeEvent => {
+    if (disabled) {
+      return;
+    }
+    // If touch-action: none; is not supported we need to prevent the scroll manually.
+    if (!doesSupportTouchActionNone()) {
+      nativeEvent.preventDefault();
+    }
+    const touch = nativeEvent.changedTouches[0];
+    if (touch != null) {
+      // A number that uniquely identifies the current finger in the touch session.
+      touchId.current = touch.identifier;
+    }
+    const finger = trackFinger(nativeEvent, touchId);
+    if (finger !== false) {
+      const {
+        newValue,
+        activeIndex
+      } = getFingerNewValue({
+        finger
+      });
+      focusThumb({
+        sliderRef,
+        activeIndex,
+        setActive
+      });
+      setValueState(newValue);
+      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
+        handleChange(nativeEvent, newValue, activeIndex);
+      }
+    }
+    moveCount.current = 0;
+    const doc = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__["default"])(sliderRef.current);
+    doc.addEventListener('touchmove', handleTouchMove, {
+      passive: true
+    });
+    doc.addEventListener('touchend', handleTouchEnd, {
+      passive: true
+    });
+  });
+  const stopListening = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(() => {
+    const doc = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__["default"])(sliderRef.current);
+    doc.removeEventListener('mousemove', handleTouchMove);
+    doc.removeEventListener('mouseup', handleTouchEnd);
+    doc.removeEventListener('touchmove', handleTouchMove);
+    doc.removeEventListener('touchend', handleTouchEnd);
+  }, [handleTouchEnd, handleTouchMove]);
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+    const {
+      current: slider
+    } = sliderRef;
+    slider.addEventListener('touchstart', handleTouchStart, {
+      passive: doesSupportTouchActionNone()
+    });
+    return () => {
+      slider.removeEventListener('touchstart', handleTouchStart);
+      stopListening();
+    };
+  }, [stopListening, handleTouchStart]);
+  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+    if (disabled) {
+      stopListening();
+    }
+  }, [disabled, stopListening]);
+  const createHandleMouseDown = otherHandlers => event => {
+    otherHandlers.onMouseDown?.(event);
+    if (disabled) {
+      return;
+    }
+    if (event.defaultPrevented) {
+      return;
+    }
+
+    // Only handle left clicks
+    if (event.button !== 0) {
+      return;
+    }
+
+    // Avoid text selection
+    event.preventDefault();
+    const finger = trackFinger(event, touchId);
+    if (finger !== false) {
+      const {
+        newValue,
+        activeIndex
+      } = getFingerNewValue({
+        finger
+      });
+      focusThumb({
+        sliderRef,
+        activeIndex,
+        setActive
+      });
+      setValueState(newValue);
+      if (handleChange && !areValuesEqual(newValue, valueDerived)) {
+        handleChange(event, newValue, activeIndex);
+      }
+    }
+    moveCount.current = 0;
+    const doc = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_1__["default"])(sliderRef.current);
+    doc.addEventListener('mousemove', handleTouchMove, {
+      passive: true
+    });
+    doc.addEventListener('mouseup', handleTouchEnd);
+  };
+  const trackOffset = valueToPercent(range ? values[0] : min, min, max);
+  const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
+  const getRootProps = (externalProps = {}) => {
+    const externalHandlers = (0,_mui_utils_extractEventHandlers__WEBPACK_IMPORTED_MODULE_9__["default"])(externalProps);
+    const ownEventHandlers = {
+      onMouseDown: createHandleMouseDown(externalHandlers || {})
+    };
+    const mergedEventHandlers = {
+      ...externalHandlers,
+      ...ownEventHandlers
+    };
+    return {
+      ...externalProps,
+      ref: handleRef,
+      ...mergedEventHandlers
+    };
+  };
+  const createHandleMouseOver = otherHandlers => event => {
+    otherHandlers.onMouseOver?.(event);
+    const index = Number(event.currentTarget.getAttribute('data-index'));
+    setOpen(index);
+  };
+  const createHandleMouseLeave = otherHandlers => event => {
+    otherHandlers.onMouseLeave?.(event);
+    setOpen(-1);
+  };
+  const getThumbProps = (externalProps = {}) => {
+    const externalHandlers = (0,_mui_utils_extractEventHandlers__WEBPACK_IMPORTED_MODULE_9__["default"])(externalProps);
+    const ownEventHandlers = {
+      onMouseOver: createHandleMouseOver(externalHandlers || {}),
+      onMouseLeave: createHandleMouseLeave(externalHandlers || {})
+    };
+    return {
+      ...externalProps,
+      ...externalHandlers,
+      ...ownEventHandlers
+    };
+  };
+  const getThumbStyle = index => {
+    return {
+      // So the non active thumb doesn't show its label on hover.
+      pointerEvents: active !== -1 && active !== index ? 'none' : undefined
+    };
+  };
+  let cssWritingMode;
+  if (orientation === 'vertical') {
+    cssWritingMode = isRtl ? 'vertical-rl' : 'vertical-lr';
+  }
+  const getHiddenInputProps = (externalProps = {}) => {
+    const externalHandlers = (0,_mui_utils_extractEventHandlers__WEBPACK_IMPORTED_MODULE_9__["default"])(externalProps);
+    const ownEventHandlers = {
+      onChange: createHandleHiddenInputChange(externalHandlers || {}),
+      onFocus: createHandleHiddenInputFocus(externalHandlers || {}),
+      onBlur: createHandleHiddenInputBlur(externalHandlers || {}),
+      onKeyDown: createHandleHiddenInputKeyDown(externalHandlers || {})
+    };
+    const mergedEventHandlers = {
+      ...externalHandlers,
+      ...ownEventHandlers
+    };
+    return {
+      tabIndex,
+      'aria-labelledby': ariaLabelledby,
+      'aria-orientation': orientation,
+      'aria-valuemax': scale(max),
+      'aria-valuemin': scale(min),
+      name,
+      type: 'range',
+      min: parameters.min,
+      max: parameters.max,
+      step: parameters.step === null && parameters.marks ? 'any' : parameters.step ?? undefined,
+      disabled,
+      ...externalProps,
+      ...mergedEventHandlers,
+      style: {
+        ..._mui_utils__WEBPACK_IMPORTED_MODULE_10__["default"],
+        direction: isRtl ? 'rtl' : 'ltr',
+        // So that VoiceOver's focus indicator matches the thumb's dimensions
+        width: '100%',
+        height: '100%',
+        writingMode: cssWritingMode
+      }
+    };
+  };
+  return {
+    active,
+    axis: axis,
+    axisProps,
+    dragging,
+    focusedThumbIndex,
+    getHiddenInputProps,
+    getRootProps,
+    getThumbProps,
+    marks: marks,
+    open,
+    range,
+    rootRef: handleRef,
+    trackLeap,
+    trackOffset,
+    values,
+    getThumbStyle
+  };
+}
+
+/***/ }),
+
 /***/ "./node_modules/@mui/material/Stack/Stack.js":
 /*!***************************************************!*\
   !*** ./node_modules/@mui/material/Stack/Stack.js ***!
@@ -23159,6 +25129,24 @@ function createControlledPromise() {
 
 /***/ }),
 
+/***/ "./node_modules/@mui/material/utils/areArraysEqual.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@mui/material/utils/areArraysEqual.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function areArraysEqual(array1, array2, itemComparer = (a, b) => a === b) {
+  return array1.length === array2.length && array1.every((value, index) => itemComparer(value, array2[index]));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (areArraysEqual);
+
+/***/ }),
+
 /***/ "./node_modules/@mui/material/utils/capitalize.js":
 /*!********************************************************!*\
   !*** ./node_modules/@mui/material/utils/capitalize.js ***!
@@ -23397,6 +25385,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mui_utils_ownerWindow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/utils/ownerWindow */ "./node_modules/@mui/utils/esm/ownerWindow/ownerWindow.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_mui_utils_ownerWindow__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/utils/shouldSpreadAdditionalProps.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@mui/material/utils/shouldSpreadAdditionalProps.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _isHostComponent_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isHostComponent.js */ "./node_modules/@mui/material/utils/isHostComponent.js");
+
+const shouldSpreadAdditionalProps = Slot => {
+  return !Slot || !(0,_isHostComponent_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Slot);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (shouldSpreadAdditionalProps);
 
 /***/ }),
 
@@ -29305,6 +31313,32 @@ function useTimeout() {
 
 /***/ }),
 
+/***/ "./node_modules/@mui/utils/esm/visuallyHidden/visuallyHidden.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@mui/utils/esm/visuallyHidden/visuallyHidden.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const visuallyHidden = {
+  border: 0,
+  clip: 'rect(0 0 0 0)',
+  height: '1px',
+  margin: '-1px',
+  overflow: 'hidden',
+  padding: 0,
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: '1px'
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (visuallyHidden);
+
+/***/ }),
+
 /***/ "./node_modules/@mui/utils/node_modules/react-is/cjs/react-is.development.js":
 /*!***********************************************************************************!*\
   !*** ./node_modules/@mui/utils/node_modules/react-is/cjs/react-is.development.js ***!
@@ -32423,9 +34457,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Heading: () => (/* binding */ Heading)
 /* harmony export */ });
 class Heading {
-  constructor(name, subs = []) {
+  constructor(name, subs = [], length = 300) {
     this.name = name;
     this.subs = subs;
+    this.length = length;
   }
 }
 
@@ -32519,12 +34554,13 @@ class Prompt {
     const res = await this.requestStringArray(system_msg, user_msg);
     return res;
   }
-  async generateBody(title, heading, subheadings) {
+  async generateBody(title, heading, subheadings, desiredLength) {
     let system_msg = `
       初心者を対象とした親しみやすく助けになる雰囲気で、SEOを意識した記事の本文を書いてください。
       文章は指定されたアウトラインの内容のみ書いてください。
 
       視点: 記事のライターとして、優しく親しみを得やすい文章を書く。
+      ${desiredLength && `長さ: ${desiredLength} 文字程度。`}
 
       出力: 
         - タグはマークアップ形式で出力してください。
@@ -49998,17 +52034,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Container/Container.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Autocomplete/Autocomplete.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/TextField/TextField.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Stack/Stack.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Button/Button.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Autocomplete/Autocomplete.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/TextField/TextField.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Stack/Stack.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Chip/Chip.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Typography/Typography.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Accordion/Accordion.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionSummary/AccordionSummary.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/AccordionDetails/AccordionDetails.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CircularProgress/CircularProgress.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Slider/Slider.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CircularProgress/CircularProgress.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
 /* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scss/app.scss */ "./src/scss/app.scss");
 /* harmony import */ var _scss_app_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scss/app.module.css */ "./src/scss/app.module.css");
 /* harmony import */ var _prompt__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./prompt */ "./src/prompt.js");
@@ -50075,39 +52112,47 @@ const App = () => {
     setOptGenerated([]);
     const res = [];
     for (let h of headings) {
-      let s = await prompt.generateBody(title, h.name, h.subs);
-      res.append(s);
+      console.log("start generating", title, h.name, h.subs, h.length);
+      let s = await prompt.generateBody(title, h.name, h.subs, h.length);
+      res.push(s);
     }
     //生成完了の処理
     setOptGenerated(res);
     setIsGenerating(false);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      onClick: () => {
+        setKeywords(["東京", "ペアリング"]);
+        setTarget("カップル");
+        setTitle("東京でペアリングを選ぶカップルのための完全ガイド");
+      },
+      children: "\u958B\u767A\u8005\u30E2\u30FC\u30C9"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u30AD\u30FC\u30EF\u30FC\u30C9"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
       multiple: true,
       freeSolo: true,
       options: [],
       value: keywords,
       onChange: (e, v) => setKeywords(v),
-      renderInput: params => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      renderInput: params => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
         ...params,
         variant: "standard",
         placeholder: "\u30AD\u30FC\u30EF\u30FC\u30C9\u3092\u5165\u529B\u3057Enter\u3067\u8FFD\u52A0\u3057\u307E\u3059"
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u30BF\u30FC\u30B2\u30C3\u30C8"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
       variant: "standard",
       placeholder: "\u60F3\u5B9A\u3055\u308C\u308B\u8A18\u4E8B\u306E\u8AAD\u8005\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044 (\u4F8B: \u30AB\u30C3\u30D7\u30EB)",
       value: target,
       onChange: e => setTarget(e.target.value)
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u30BF\u30A4\u30C8\u30EB"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
       alignItems: "flex-start",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
         variant: "contained",
         onClick: suggestTitles,
         children: "\u30BF\u30A4\u30C8\u30EB\u3092\u63D0\u6848"
@@ -50123,7 +52168,7 @@ const App = () => {
       }), optTitles.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
         variant: "caption",
         children: "\u30AF\u30EA\u30C3\u30AF\u3067\u5019\u88DC\u3092\u63A1\u7528\u3057\u307E\u3059"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
         variant: "standard",
         placeholder: "\u8A18\u4E8B\u306E\u30BF\u30A4\u30C8\u30EB\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044",
         value: title,
@@ -50131,9 +52176,9 @@ const App = () => {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u898B\u51FA\u3057"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
       alignItems: "flex-start",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
         variant: "contained",
         onClick: suggestHeadings,
         children: "\u30BF\u30A4\u30C8\u30EB\u304B\u3089\u898B\u51FA\u3057\u3092\u63D0\u6848"
@@ -50150,7 +52195,7 @@ const App = () => {
         variant: "caption",
         children: "\u30AF\u30EA\u30C3\u30AF\u3067\u5019\u88DC\u3092\u63A1\u7528\u3057\u307E\u3059"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
       variant: "standard",
       placeholder: "\u5165\u529B\u3057Ender\u3067\u624B\u52D5\u3067\u8FFD\u52A0\u3057\u307E\u3059",
       onKeyDown: e => {
@@ -50164,32 +52209,44 @@ const App = () => {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
       variant: "caption",
       children: "\u898B\u51FA\u3057\u3092\u3082\u3068\u306B\u5C0F\u898B\u51FA\u3057\u3092\u3044\u304F\u3064\u304B\u63D0\u6848\u3057\u307E\u3057\u305F\u3002 \u9805\u76EE\u306F\u81EA\u7531\u306B\u7DE8\u96C6\u3067\u304D\u308B\u305F\u3081\u3001\u9806\u5E8F\u306E\u5909\u66F4\u3084\u8FFD\u52A0\u30FB\u524A\u9664\u3001\u7DE8\u96C6\u306A\u3069\u3092\u884C\u3063\u3066\u304B\u3089\u8A18\u4E8B\u3092\u751F\u6210\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
-    }), headings.length > 0 && headings.map((v, i) => {
+    }), headings.length > 0 && headings.map((head, i) => {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_16__["default"], {
         defaultExpanded: true,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_17__["default"], {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
-            children: v.name
+            children: head.name
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_18__["default"], {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_18__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
             multiline: true,
-            defaultValue: v.subs.join("\n")
-          })
+            defaultValue: head.subs.join("\n")
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
+              children: "\u6587\u7AE0\u306E\u9577\u3055"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_19__["default"], {
+              defaultValue: 500,
+              valueLabelDisplay: "auto",
+              onChange: (_, v) => head.length = v,
+              step: 100,
+              min: 100,
+              max: 1000,
+              marks: true
+            })]
+          })]
         })]
       }, i);
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
       variant: "contained",
       onClick: generateBody,
       children: "\u8A18\u4E8B\u3092\u751F\u6210"
-    }), isGenerating && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_19__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
+    }), isGenerating && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_20__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u51FA\u529B\u7D50\u679C\u306E\u78BA\u8A8D"
-    }), optGenerated.length > 0 && optGenerated.map((v, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_20__["default"], {
+    }), optGenerated.length > 0 && optGenerated.map((v, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_21__["default"], {
       dangerouslyAllowBrowser: true,
       dangerouslySetInnerHTML: {
         __html: v
       }
-    }, i)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    }, i)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
       variant: "contained",
       onClick: () => {
         navigator.clipboard.writeText(optGenerated.join("\n"));

@@ -14,6 +14,7 @@ import {
   Container,
   Box,
   Stack,
+  Slider
 } from "@mui/material";
 
 //スタイルシートの読み込み
@@ -79,10 +80,11 @@ const App = () => {
     setIsGenerating(true);
     setOptGenerated([]);
 
-    const res = []
+    const res = [];
     for (let h of headings) {
-      let s = await prompt.generateBody(title, h.name, h.subs);
-      res.append(s);
+      console.log("start generating", title, h.name, h.subs, h.length);
+      let s = await prompt.generateBody(title, h.name, h.subs, h.length);
+      res.push(s);
     }
     //生成完了の処理
     setOptGenerated(res);
@@ -91,6 +93,7 @@ const App = () => {
 
   return (
     <Container>
+      <Button onClick={() => { setKeywords(["東京", "ペアリング"]); setTarget("カップル"); setTitle("東京でペアリングを選ぶカップルのための完全ガイド") }}>開発者モード</Button>
       <h2>キーワード</h2>
       <Autocomplete
         multiple
@@ -176,14 +179,26 @@ const App = () => {
         項目は自由に編集できるため、順序の変更や追加・削除、編集などを行ってから記事を生成してください。
       </Typography>
       {headings.length > 0 &&
-        headings.map((v, i) => {
+        headings.map((head, i) => {
           return (
             <Accordion key={i} defaultExpanded>
               <AccordionSummary>
-                <Typography>{v.name}</Typography>
+                <Typography>{head.name}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <TextField multiline defaultValue={v.subs.join("\n")} />
+                <TextField multiline defaultValue={head.subs.join("\n")} />
+                <Stack>
+                  <Typography>文章の長さ</Typography>
+                  <Slider 
+                    defaultValue={500}
+                    valueLabelDisplay="auto"
+                    onChange={(_, v) => head.length = v}
+                    step={100}
+                    min={100}
+                    max={1000}
+                    marks
+                  />
+                </Stack>
               </AccordionDetails>
             </Accordion>
           );

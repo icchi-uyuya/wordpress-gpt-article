@@ -75,12 +75,18 @@ export class Prompt {
     return res;
   }
 
-  async generateBody(title, heading, subheadings) {
+  async generateBody(
+    title, 
+    heading, 
+    subheadings,
+    desiredLength
+  ) {
     let system_msg = `
       初心者を対象とした親しみやすく助けになる雰囲気で、SEOを意識した記事の本文を書いてください。
       文章は指定されたアウトラインの内容のみ書いてください。
 
       視点: 記事のライターとして、優しく親しみを得やすい文章を書く。
+      ${desiredLength && `長さ: ${desiredLength} 文字程度。`}
 
       出力: 
         - タグはマークアップ形式で出力してください。
