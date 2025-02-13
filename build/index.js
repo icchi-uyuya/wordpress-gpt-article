@@ -52078,6 +52078,7 @@ const article = new _article_basic_article__WEBPACK_IMPORTED_MODULE_5__.BasicArt
 
 //TODO UIをMUIで統一したい
 const App = () => {
+  const [refer, setRefer] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(""); //参考サイト
   const [keywords, setKeywords] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   const [target, setTarget] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
   const [title, setTitle] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("");
@@ -52087,8 +52088,8 @@ const App = () => {
   const [optTitles, setOptTitles] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   const [optHeadings, setOptHeadings] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
   const [optGenerated, setOptGenerated] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]);
-  console.log(keywords, target, title, headings); //TODO デバッグ用
-  console.log(optHeadings);
+  console.log(keywords, target, title, headings, refer); //TODO デバッグ用
+  console.log(optHeadings, optTitles);
   const suggestTitles = async () => {
     const titles = await prompt.suggestTitles(keywords, target);
     setOptTitles(titles);
@@ -52123,9 +52124,9 @@ const App = () => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_9__["default"], {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_10__["default"], {
       onClick: () => {
-        setKeywords(["東京", "ペアリング"]);
+        setKeywords(["プラチナ", "婚約", "指輪"]);
         setTarget("カップル");
-        setTitle("東京でペアリングを選ぶカップルのための完全ガイド");
+        setRefer("https://kazoku-wedding.jp/howto/party-platinumring/");
       },
       children: "\u958B\u767A\u8005\u30E2\u30FC\u30C9"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
@@ -52148,7 +52149,7 @@ const App = () => {
       placeholder: "\u60F3\u5B9A\u3055\u308C\u308B\u8A18\u4E8B\u306E\u8AAD\u8005\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044 (\u4F8B: \u30AB\u30C3\u30D7\u30EB)",
       value: target,
       onChange: e => setTarget(e.target.value)
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u30BF\u30A4\u30C8\u30EB"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
       alignItems: "flex-start",
@@ -52175,6 +52176,13 @@ const App = () => {
         onChange: e => setTitle(e.target.value)
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
+      children: "\u53C2\u8003\u30B5\u30A4\u30C8"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      variant: "standard",
+      placeholder: "\u53C2\u8003\u306B\u3059\u308B\u30B5\u30A4\u30C8\u306EURL\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044",
+      value: refer,
+      onChange: (_, v) => setRefer(v)
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       children: "\u898B\u51FA\u3057"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
       alignItems: "flex-start",
@@ -52218,8 +52226,10 @@ const App = () => {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_18__["default"], {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
-            multiline: true,
-            defaultValue: head.subs.join("\n")
+            multiline: true //TODO コンポーネント化
+            ,
+            defaultValue: head.subs.join("\n"),
+            onChange: e => head.subs = e.target.value.split("\n")
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_15__["default"], {
               children: "\u6587\u7AE0\u306E\u9577\u3055"
@@ -52228,8 +52238,8 @@ const App = () => {
               valueLabelDisplay: "auto",
               onChange: (_, v) => head.length = v,
               step: 100,
-              min: 100,
-              max: 1000,
+              min: 300,
+              max: 1500,
               marks: true
             })]
           })]

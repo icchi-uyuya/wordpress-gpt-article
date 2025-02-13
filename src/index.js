@@ -42,6 +42,7 @@ const article = new BasicArticle();
 
 //TODO UIをMUIで統一したい
 const App = () => {
+  const [refer, setRefer] = useState(""); //参考サイト
   const [keywords, setKeywords] = useState([]);
   const [target, setTarget] = useState("");
   const [title, setTitle] = useState("");
@@ -52,8 +53,8 @@ const App = () => {
   const [optHeadings, setOptHeadings] = useState([]);
   const [optGenerated, setOptGenerated] = useState([]);
 
-  console.log(keywords, target, title, headings); //TODO デバッグ用
-  console.log(optHeadings);
+  console.log(keywords, target, title, headings, refer); //TODO デバッグ用
+  console.log(optHeadings, optTitles);
 
   const suggestTitles = async () => {
     const titles = await prompt.suggestTitles(keywords, target);
@@ -93,7 +94,13 @@ const App = () => {
 
   return (
     <Container>
-      <Button onClick={() => { setKeywords(["東京", "ペアリング"]); setTarget("カップル"); setTitle("東京でペアリングを選ぶカップルのための完全ガイド") }}>開発者モード</Button>
+      <Button onClick={() => { 
+        setKeywords(["プラチナ", "婚約", "指輪"]); 
+        setTarget("カップル"); 
+        setRefer("https://kazoku-wedding.jp/howto/party-platinumring/");
+      }}>
+        開発者モード
+      </Button>
       <h2>キーワード</h2>
       <Autocomplete
         multiple
@@ -116,8 +123,7 @@ const App = () => {
         value={target}
         onChange={(e) => setTarget(e.target.value)}
       />
-      <hr />
-
+      
       <h2>タイトル</h2>
       <Stack alignItems={"flex-start"}>
         <Button variant="contained" onClick={suggestTitles}>
@@ -142,7 +148,14 @@ const App = () => {
         />
       </Stack>
       <hr />
-
+      
+      <h2>参考サイト</h2>
+      <TextField
+        variant="standard"
+        placeholder="参考にするサイトのURLを入力してください"
+        value={refer}
+        onChange={(_, v) => setRefer(v)}
+      />
       <h2>見出し</h2>
       <Stack alignItems={"flex-start"}>
         <Button variant="contained" onClick={suggestHeadings}>
@@ -186,7 +199,11 @@ const App = () => {
                 <Typography>{head.name}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <TextField multiline defaultValue={head.subs.join("\n")} />
+                <TextField 
+                  multiline  //TODO コンポーネント化
+                  defaultValue={head.subs.join("\n")} 
+                  onChange={e => head.subs = e.target.value.split("\n")}
+                />
                 <Stack>
                   <Typography>文章の長さ</Typography>
                   <Slider 
@@ -194,8 +211,8 @@ const App = () => {
                     valueLabelDisplay="auto"
                     onChange={(_, v) => head.length = v}
                     step={100}
-                    min={100}
-                    max={1000}
+                    min={300}
+                    max={1500}
                     marks
                   />
                 </Stack>
