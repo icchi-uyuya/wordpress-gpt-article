@@ -1,5 +1,5 @@
+import { render } from "@wordpress/element";
 import { OpenAI } from "openai";
-import { render } from "react-dom";
 import { useState } from "react";
 import {
   Typography,
@@ -22,16 +22,14 @@ import AddIcon from "@mui/icons-material/Add";
 
 //スタイルシートの読み込み
 import "./scss/app.scss";
-import style from "./scss/app.module.css";
 
-import { Prompt } from "./prompt";
-import { BasicArticle } from "./article/basic_article";
+import { Prompt } from "./prompt/prompt";
 import { Heading } from "./article/heading";
 
-console.log("hello world! v0.1");
+console.log("hello world! v0.2");
 
 //FIXME 仮でハードコーディングしている
-const API_RAW =
+const API_RAW: string =
   "c2stcHJvai1iVTlhdGpVV3RWMWxXRGJVMjkxWHMwMVFaenZwZ3hhLW9YRnNKRWhiUG1WR295Xy1aMnBTYmRtNnNvRXREcXZVMGFUVi1PWWZfbVQzQmxia0ZKZGJDak1qUzcySkZjQ1dFTGltZ1BpMnZjcF9nQWtlTnB5VlFCV1dERFhTOGhyTFRoUzZrbi1HZ3lOeDIxQTlkajdCMENsNWZDa0E=";
 
 const openai = new OpenAI({
@@ -41,20 +39,18 @@ const openai = new OpenAI({
 
 const prompt = new Prompt(openai);
 
-const article = new BasicArticle();
-
 //TODO UIをMUIで統一したい
 const App = () => {
   const [refer, setRefer] = useState(""); //参考サイト
-  const [keywords, setKeywords] = useState([]);
+  const [keywords, setKeywords] = useState<string[]>([]);
   const [target, setTarget] = useState("");
   const [title, setTitle] = useState("");
-  const [headings, setHeadings] = useState([]); //list[Heading]
+  const [headings, setHeadings] = useState<Heading[]>([]); //list[Heading]
 
   const [isGenerating, setIsGenerating] = useState(false);
-  const [optTitles, setOptTitles] = useState([]);
-  const [optHeadings, setOptHeadings] = useState([]);
-  const [optGenerated, setOptGenerated] = useState([]);
+  const [optTitles, setOptTitles] = useState<string[]>([]);
+  const [optHeadings, setOptHeadings] = useState<string[]>([]);
+  const [optGenerated, setOptGenerated] = useState<string[]>([]);
 
   console.log(keywords, target, title, headings, refer); //TODO デバッグ用
   console.log(optHeadings, optTitles);
@@ -71,7 +67,7 @@ const App = () => {
     console.log(headings);
   };
 
-  const addHeading = async (str) => {
+  const addHeading = async (str: string) => {
     console.log(str);
     let sub = await prompt.suggestSubheadings(title, str);
     let h = new Heading(str, sub);
@@ -158,7 +154,7 @@ const App = () => {
         variant="standard"
         placeholder="参考にするサイトのURLを入力してください"
         value={refer}
-        onChange={(_, v) => setRefer(v)}
+        onChange={e => setRefer(e.target.value)}
       />
       <h2>見出し</h2>
       <Stack alignItems={"flex-start"}>
