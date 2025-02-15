@@ -14,8 +14,11 @@ import {
   Container,
   Box,
   Stack,
-  Slider
+  Slider,
+  Fab
 } from "@mui/material";
+
+import AddIcon from "@mui/icons-material/Add";
 
 //スタイルシートの読み込み
 import "./scss/app.scss";
@@ -97,6 +100,7 @@ const App = () => {
       <Button onClick={() => { 
         setKeywords(["プラチナ", "婚約", "指輪"]); 
         setTarget("カップル"); 
+        setTitle("カップル必見！プラチナ婚約指輪の魅力とは");
         setRefer("https://kazoku-wedding.jp/howto/party-platinumring/");
       }}>
         開発者モード
@@ -216,6 +220,9 @@ const App = () => {
                     marks
                   />
                 </Stack>
+                <Fab color="primary">
+                  <AddIcon />                
+                </Fab>
               </AccordionDetails>
             </Accordion>
           );
