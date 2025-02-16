@@ -1,6 +1,9 @@
+//基本モジュール
 import { render } from "@wordpress/element";
 import { OpenAI } from "openai";
-import { useState } from "react";
+import { useRef, useState } from "react";
+
+//Material UI
 import {
   Typography,
   Autocomplete,
@@ -15,9 +18,12 @@ import {
   Box,
   Stack,
   Slider,
-  Fab
+  Fab,
+  Divider,
+  List,
+  ListItem,
+  Backdrop
 } from "@mui/material";
-
 import AddIcon from "@mui/icons-material/Add";
 
 //スタイルシートの読み込み
@@ -25,6 +31,7 @@ import "./scss/app.scss";
 
 import { Prompt } from "./prompt/prompt";
 import { Heading } from "./article/heading";
+import zIndex from "@mui/material/styles/zIndex";
 
 console.log("hello world! v0.2");
 
@@ -40,7 +47,7 @@ const openai = new OpenAI({
 const prompt = new Prompt(openai);
 
 //TODO UIをMUIで統一したい
-const App = () => {
+const App: React.FC = () => {
   const [refer, setRefer] = useState(""); //参考サイト
   const [keywords, setKeywords] = useState<string[]>([]);
   const [target, setTarget] = useState("");
@@ -52,23 +59,21 @@ const App = () => {
   const [optHeadings, setOptHeadings] = useState<string[]>([]);
   const [optGenerated, setOptGenerated] = useState<string[]>([]);
 
-  console.log(keywords, target, title, headings, refer); //TODO デバッグ用
-  console.log(optHeadings, optTitles);
+  //内部状態
+  const inputHeadingRef = useRef<HTMLInputElement>(null);
+  const [selectedHeading, setSelectedHeading] = useState<Heading | undefined>();
 
   const suggestTitles = async () => {
     const titles = await prompt.suggestTitles(keywords, target);
     setOptTitles(titles);
-    console.log(titles);
   }
 
   const suggestHeadings = async () => {
     const headings = await prompt.suggestOutlines(title, keywords, target);
     setOptHeadings(headings);
-    console.log(headings);
   };
 
   const addHeading = async (str: string) => {
-    console.log(str);
     let sub = await prompt.suggestSubheadings(title, str);
     let h = new Heading(str, sub);
     console.log(`add heading: ${h.name} ${h.subs}`);
@@ -93,11 +98,16 @@ const App = () => {
 
   return (
     <Container>
-      <Button onClick={() => { 
-        setKeywords(["プラチナ", "婚約", "指輪"]); 
-        setTarget("カップル"); 
+      <Button onClick={() => {
+        setKeywords(["プラチナ", "婚約", "指輪"]);
+        setTarget("カップル");
         setTitle("カップル必見！プラチナ婚約指輪の魅力とは");
         setRefer("https://kazoku-wedding.jp/howto/party-platinumring/");
+        setHeadings([
+          new Heading("1. プラチナ婚約指輪とは？基本情報と特長",
+            ["プラチナ婚約指輪の歴史と文化", "プラチナの持つ意味と象徴"]
+          )
+        ])
       }}>
         開発者モード
       </Button>
@@ -121,9 +131,9 @@ const App = () => {
         variant="standard"
         placeholder="想定される記事の読者を入力してください (例: カップル)"
         value={target}
-        onChange={(e) => setTarget(e.target.value)}
+        onChange={e => setTarget(e.target.value)}
       />
-      
+
       <h2>タイトル</h2>
       <Stack alignItems={"flex-start"}>
         <Button variant="contained" onClick={suggestTitles}>
@@ -136,7 +146,7 @@ const App = () => {
           }
           return <Chip key={i} label={v} onClick={onClick} />;
         })}
-        {optTitles.length > 0 && 
+        {optTitles.length > 0 &&
           <Typography variant="caption">
             クリックで候補を採用します
           </Typography>}
@@ -144,12 +154,12 @@ const App = () => {
           variant="standard"
           placeholder="記事のタイトルを入力してください"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={e => setTitle(e.target.value)}
         />
       </Stack>
       <hr />
-      
-      <h2>参考サイト</h2>
+
+      <h2>参考サイト(未実装)</h2>
       <TextField
         variant="standard"
         placeholder="参考にするサイトのURLを入力してください"
@@ -169,7 +179,7 @@ const App = () => {
             };
             return <Chip key={i} label={v} onClick={onClick} />;
           })}
-        {optHeadings.length > 0 && 
+        {optHeadings.length > 0 &&
           <Typography variant="caption">
             クリックで候補を採用します
           </Typography>}
@@ -177,10 +187,14 @@ const App = () => {
       <TextField
         variant="standard"
         placeholder="入力しEnderで手動で追加します"
-        onKeyDown={(e) => {
-          if (e.key === "Enter" && e.target.value !== "") {
-            addHeading(e.target.value);
-            e.target.value = "";
+        inputRef={inputHeadingRef}
+        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+          const v = inputHeadingRef.current!!.value;
+          console.log(v)
+          if (e.key === "Enter" && v !== "") {
+            e.preventDefault();
+            inputHeadingRef.current!!.value = "";
+            addHeading(v);
           }
         }}
       />
@@ -194,31 +208,62 @@ const App = () => {
       {headings.length > 0 &&
         headings.map((head, i) => {
           return (
-            <Accordion key={i} defaultExpanded>
+            <Accordion
+              key={i}
+              className="p-heading-form"
+              defaultExpanded
+            >
               <AccordionSummary>
                 <Typography>{head.name}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <TextField 
-                  multiline  //TODO コンポーネント化
-                  defaultValue={head.subs.join("\n")} 
-                  onChange={e => head.subs = e.target.value.split("\n")}
-                />
+                <Container>
+                  <List>
+                    {head.subs.map((v, i) => (
+                      <>
+                        <ListItem className="sub-item" sx={{ margin: 0 }}>
+                          <Typography>{v}</Typography>
+                        </ListItem>
+                        {i < head.subs.length - 1 && <Divider />}
+                      </>
+                    ))}
+                  </List>
+                  <Fab
+                    variant="extended"
+                    size="small"
+                    color="primary"
+                    className="add-button"
+                    onClick={() => setSelectedHeading(head)}
+                  >
+                    <AddIcon/>
+                    追加
+                  </Fab>
+                  <Backdrop //TODO ファイル分離
+                    open={selectedHeading != undefined}
+                    onClick={() => setSelectedHeading(undefined)}
+                    sx={(theme) => ({ zIndex: theme.zIndex.drawer + 1 })}
+                  >
+                    <Container maxWidth="sm" className="p-heading-modal">
+                      <h2>小見出しの追加(作成中)</h2>
+                      <Typography variant="caption">
+                        必要に応じて小見出しを追加します。
+                        提案を使用するまたは手動で入力し小見出しのタイトルを決定してください。
+                      </Typography>
+                    </Container>
+                  </Backdrop>
+                </Container>
                 <Stack>
                   <Typography>文章の長さ</Typography>
-                  <Slider 
+                  <Slider
                     defaultValue={500}
                     valueLabelDisplay="auto"
-                    onChange={(_, v) => head.length = v}
+                    onChange={(_, v) => head.length = (v as number)}
                     step={100}
                     min={300}
                     max={1500}
                     marks
                   />
                 </Stack>
-                <Fab color="primary">
-                  <AddIcon />                
-                </Fab>
               </AccordionDetails>
             </Accordion>
           );
@@ -234,7 +279,6 @@ const App = () => {
         optGenerated.map((v, i) => (
           <Box
             key={i}
-            dangerouslyAllowBrowser
             dangerouslySetInnerHTML={{ __html: v }}
           />
         ))}
