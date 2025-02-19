@@ -62,11 +62,12 @@ const App: React.FC = () => {
   //内部状態
   const inputHeadingRef = useRef<HTMLInputElement>(null);
   const [selectedHeading, setSelectedHeading] = useState<Heading | undefined>();
+  const [optSubheadings, setOptSubheadings] = useState<string[]>([]); //選択されたヘッダの入力
 
   const suggestTitles = async () => {
     const titles = await prompt.suggestTitles(keywords, target);
     setOptTitles(titles);
-  }
+  };
 
   const suggestHeadings = async () => {
     const headings = await prompt.suggestOutlines(title, keywords, target);
@@ -75,10 +76,16 @@ const App: React.FC = () => {
 
   const addHeading = async (str: string) => {
     let sub = await prompt.suggestSubheadings(title, str);
+    sub = sub.slice(0, 2); //TODO 最初から追加しなくても良い
     let h = new Heading(str, sub);
     console.log(`add heading: ${h.name} ${h.subs}`);
     setHeadings([...headings, h]);
   };
+
+  const addSubheading = (sub: string) => {
+    selectedHeading?.subs.push(sub);
+    setSelectedHeading(undefined);
+  }
 
   const generateBody = async () => {
     //生成結果を初期化
@@ -220,12 +227,12 @@ const App: React.FC = () => {
                 <Container>
                   <List>
                     {head.subs.map((v, i) => (
-                      <>
+                      <div key={i}>
                         <ListItem className="sub-item" sx={{ margin: 0 }}>
                           <Typography>{v}</Typography>
                         </ListItem>
                         {i < head.subs.length - 1 && <Divider />}
-                      </>
+                      </div>
                     ))}
                   </List>
                   <Fab
@@ -233,9 +240,13 @@ const App: React.FC = () => {
                     size="small"
                     color="primary"
                     className="add-button"
-                    onClick={() => setSelectedHeading(head)}
+                    onClick={async () => {
+                      setSelectedHeading(head);
+                      let arr = await prompt.suggestSubheadings(title, head.name);
+                      setOptSubheadings(arr);
+                    }}
                   >
-                    <AddIcon/>
+                    <AddIcon />
                     追加
                   </Fab>
                   <Backdrop //TODO ファイル分離
@@ -249,6 +260,10 @@ const App: React.FC = () => {
                         必要に応じて小見出しを追加します。
                         提案を使用するまたは手動で入力し小見出しのタイトルを決定してください。
                       </Typography>
+                      <Box>
+                        {optSubheadings.length > 0 && optSubheadings.map((v, i) =>
+                          <Chip key={i} label={v} onClick={() => addSubheading(v)} />)}
+                      </Box>
                     </Container>
                   </Backdrop>
                 </Container>

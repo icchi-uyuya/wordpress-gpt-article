@@ -53363,9 +53363,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Divider/Divider.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Fab/Fab.js");
 /* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Backdrop/Backdrop.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Slider/Slider.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CircularProgress/CircularProgress.js");
-/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/Slider/Slider.js");
+/* harmony import */ var _mui_material__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @mui/material */ "./node_modules/@mui/material/CircularProgress/CircularProgress.js");
 /* harmony import */ var _mui_icons_material_Add__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @mui/icons-material/Add */ "./node_modules/@mui/icons-material/esm/Add.js");
 /* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scss/app.scss */ "./src/scss/app.scss");
 /* harmony import */ var _prompt_prompt__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./prompt/prompt */ "./src/prompt/prompt.ts");
@@ -53412,6 +53412,8 @@ const App = () => {
   //内部状態
   const inputHeadingRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
   const [selectedHeading, setSelectedHeading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
+  const [optSubheadings, setOptSubheadings] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]); //選択されたヘッダの入力
+
   const suggestTitles = async () => {
     const titles = await prompt.suggestTitles(keywords, target);
     setOptTitles(titles);
@@ -53422,9 +53424,14 @@ const App = () => {
   };
   const addHeading = async str => {
     let sub = await prompt.suggestSubheadings(title, str);
+    sub = sub.slice(0, 2); //TODO 最初から追加しなくても良い
     let h = new _article_heading__WEBPACK_IMPORTED_MODULE_4__.Heading(str, sub);
     console.log(`add heading: ${h.name} ${h.subs}`);
     setHeadings([...headings, h]);
+  };
+  const addSubheading = sub => {
+    selectedHeading?.subs.push(sub);
+    setSelectedHeading(undefined);
   };
   const generateBody = async () => {
     //生成結果を初期化
@@ -53553,7 +53560,7 @@ const App = () => {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_16__["default"], {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_7__["default"], {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_17__["default"], {
-              children: head.subs.map((v, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+              children: head.subs.map((v, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_18__["default"], {
                   className: "sub-item",
                   sx: {
@@ -53563,13 +53570,17 @@ const App = () => {
                     children: v
                   })
                 }), i < head.subs.length - 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_19__["default"], {})]
-              }))
+              }, i))
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_20__["default"], {
               variant: "extended",
               size: "small",
               color: "primary",
               className: "add-button",
-              onClick: () => setSelectedHeading(head),
+              onClick: async () => {
+                setSelectedHeading(head);
+                let arr = await prompt.suggestSubheadings(title, head.name);
+                setOptSubheadings(arr);
+              },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_icons_material_Add__WEBPACK_IMPORTED_MODULE_21__["default"], {}), "\u8FFD\u52A0"]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_22__["default"] //TODO ファイル分離
             , {
@@ -53586,13 +53597,18 @@ const App = () => {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
                   variant: "caption",
                   children: "\u5FC5\u8981\u306B\u5FDC\u3058\u3066\u5C0F\u898B\u51FA\u3057\u3092\u8FFD\u52A0\u3057\u307E\u3059\u3002 \u63D0\u6848\u3092\u4F7F\u7528\u3059\u308B\u307E\u305F\u306F\u624B\u52D5\u3067\u5165\u529B\u3057\u5C0F\u898B\u51FA\u3057\u306E\u30BF\u30A4\u30C8\u30EB\u3092\u6C7A\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_23__["default"], {
+                  children: optSubheadings.length > 0 && optSubheadings.map((v, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                    label: v,
+                    onClick: () => addSubheading(v)
+                  }, i))
                 })]
               })
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_mui_material__WEBPACK_IMPORTED_MODULE_11__["default"], {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_13__["default"], {
               children: "\u6587\u7AE0\u306E\u9577\u3055"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_23__["default"], {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_24__["default"], {
               defaultValue: 500,
               valueLabelDisplay: "auto",
               onChange: (_, v) => head.length = v,
@@ -53608,9 +53624,9 @@ const App = () => {
       variant: "contained",
       onClick: generateBody,
       children: "\u8A18\u4E8B\u3092\u751F\u6210"
-    }), isGenerating && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_24__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+    }), isGenerating && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_25__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
       children: "\u51FA\u529B\u7D50\u679C\u306E\u78BA\u8A8D"
-    }), optGenerated.length > 0 && optGenerated.map((v, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_25__["default"], {
+    }), optGenerated.length > 0 && optGenerated.map((v, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_mui_material__WEBPACK_IMPORTED_MODULE_23__["default"], {
       dangerouslySetInnerHTML: {
         __html: v
       }
