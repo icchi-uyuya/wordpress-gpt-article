@@ -1,7 +1,8 @@
 import { zodResponseFormat } from "openai/helpers/zod";
 import { z } from "zod";
-import { StringArray } from "./response_type";
+import { SearchIntent, StringArray } from "./response-type";
 import OpenAI from "openai";
+import { Heading } from "../article/heading";
 
 const LLM_MODEL = "gpt-4o-mini";
 
@@ -12,7 +13,7 @@ export class Prompt {
   ) { }
 
   async requestString(
-    system_msg: string, 
+    system_msg: string,
     user_msg: string
   ) {
     let completion = await this.client.chat.completions.create({
@@ -47,8 +48,27 @@ export class Prompt {
     return res.array;
   }
 
+  async requestObject(
+    system_msg: string, user_msg: string,
+    format: z.ZodObject<any>
+  ) {
+    let completion = await this.client.beta.chat.completions.parse({
+      model: LLM_MODEL,
+      messages: [
+        { role: "system", content: system_msg },
+        { role: "user", content: user_msg },
+      ],
+      response_format: zodResponseFormat(format, "event"),
+    });
+    let res = completion.choices[0].message.parsed;
+    if (res == undefined) {
+      throw new Error("Can't parse to json");
+    }
+    return res;
+  }
+
   async suggestTitles(
-    keywords: string[], 
+    keywords: string[],
     target: string
   ) { //TODO typescriptに移行する
     let system_msg = "入力された要件に合うような、SEO最適化されたブログのタイトルを10個提案してください。";
@@ -63,14 +83,14 @@ export class Prompt {
     keywords: string[],
   ) {
     let system_msg = "入力された項目に関連するSEOキーワードを30個特定してください。";
-    let user_msg = `キーワード:「${keywords.join(", ")}」`; 
+    let user_msg = `キーワード:「${keywords.join(", ")}」`;
     const res = await this.requestStringArray(system_msg, user_msg);
     return res;
   }
 
   async suggestOutlines(
-    title: string, 
-    keywords: string[], 
+    title: string,
+    keywords: string[],
     target: string
   ) {
     let system_msg = "入力された項目を参考にして、ブログ記事のアウトラインの例を10個考えてください。";
@@ -83,7 +103,7 @@ export class Prompt {
   }
 
   async suggestSubheadings(
-    title: string, 
+    title: string,
     heading: string
   ) {
     let system_msg = "入力された見出しに合うような、さらに内側の見出しの例を10個提案してください。";
@@ -95,8 +115,8 @@ export class Prompt {
   }
 
   async generateBody(
-    title: string, 
-    heading: string, 
+    title: string,
+    heading: string,
     subheadings: string[],
     desiredLength: number,
   ) {
@@ -122,6 +142,25 @@ export class Prompt {
     `;
     const res = await this.requestString(system_msg, user_msg);
     return res;
+  }
+
+  // 検索意図を分類します
+  async classifySearchIntent(
+    heading: string,
+    subheadings: string[],
+  )
+    : Promise<(typeof SearchIntent)[]> {
+    const arr = await Promise.all(subheadings.map(async v => {
+      let system_msg = "次の入力された小見出しに関連する検索意図(Buyクエリ、Knowクエリ、Doクエリ、Goクエリ)を分析してください。";
+      let user_msg = `
+        見出し:「${heading}」
+        小見出し:「${v}」
+      `;
+      const res = await this.requestObject(system_msg, user_msg, SearchIntent)
+      return res.type;
+    }));
+    console.log(arr)
+    return arr;
   }
 
 }

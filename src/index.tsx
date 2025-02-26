@@ -17,21 +17,15 @@ import {
   Container,
   Box,
   Stack,
-  Slider,
-  Fab,
-  Divider,
-  List,
-  ListItem,
-  Backdrop
 } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 
 //スタイルシートの読み込み
 import "./scss/app.scss";
 
 import { Prompt } from "./prompt/prompt";
 import { Heading } from "./article/heading";
-import zIndex from "@mui/material/styles/zIndex";
+import { HeadingView } from "./view/heading-view";
+import { ArticleContext } from "./view/article-context";
 
 console.log("hello world! v0.2");
 
@@ -48,7 +42,7 @@ const prompt = new Prompt(openai);
 
 //TODO UIをMUIで統一したい
 const App: React.FC = () => {
-  const [refer, setRefer] = useState(""); //参考サイト
+  const [referSite, setReferSite] = useState(""); //参考サイト
   const [keywords, setKeywords] = useState<string[]>([]);
   const [target, setTarget] = useState("");
   const [title, setTitle] = useState("");
@@ -87,6 +81,14 @@ const App: React.FC = () => {
     setSelectedHeading(undefined);
   }
 
+  const setHeadingModal = async (head: Heading) => {
+    setSelectedHeading(head);
+    let arr = await prompt.suggestSubheadings(title, head.name);
+    //FIXME 検索意図はキーワードに対して使用する
+    //let si = await prompt.classifySearchIntent(head.name, arr); 
+    setOptSubheadings(arr);
+  }
+
   const generateBody = async () => {
     //生成結果を初期化
     setIsGenerating(true);
@@ -104,205 +106,157 @@ const App: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Button onClick={() => {
-        setKeywords(["プラチナ", "婚約", "指輪"]);
-        setTarget("カップル");
-        setTitle("カップル必見！プラチナ婚約指輪の魅力とは");
-        setRefer("https://kazoku-wedding.jp/howto/party-platinumring/");
-        setHeadings([
-          new Heading("1. プラチナ婚約指輪とは？基本情報と特長",
-            ["プラチナ婚約指輪の歴史と文化", "プラチナの持つ意味と象徴"]
-          )
-        ])
-      }}>
-        開発者モード
-      </Button>
-      <h2>キーワード</h2>
-      <Autocomplete
-        multiple
-        freeSolo
-        options={[]}
-        value={keywords}
-        onChange={(e, v) => setKeywords(v)}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            variant="standard"
-            placeholder="キーワードを入力しEnterで追加します"
-          />
-        )}
-      />
-      <h2>ターゲット</h2>
-      <TextField
-        variant="standard"
-        placeholder="想定される記事の読者を入力してください (例: カップル)"
-        value={target}
-        onChange={e => setTarget(e.target.value)}
-      />
-
-      <h2>タイトル</h2>
-      <Stack alignItems={"flex-start"}>
-        <Button variant="contained" onClick={suggestTitles}>
-          タイトルを提案
+    <ArticleContext.Provider value={{
+      keywords,
+      target,
+      title,
+      referSite,
+      headings,
+      setKeywords,
+      setTarget,
+      setTitle,
+      setReferSite,
+      setHeadings,
+    }}>
+      <Container>
+        <Button onClick={() => {
+          setKeywords(["プラチナ", "婚約", "指輪"]);
+          setTarget("カップル");
+          setTitle("カップル必見！プラチナ婚約指輪の魅力とは");
+          setReferSite("https://kazoku-wedding.jp/howto/party-platinumring/");
+          setHeadings([
+            new Heading("1. プラチナ婚約指輪とは？基本情報と特長",
+              ["プラチナ婚約指輪の歴史と文化", "プラチナの持つ意味と象徴"]
+            )
+          ])
+        }}>
+          開発者モード
         </Button>
-        {optTitles.length > 0 && optTitles.map((v, i) => {
-          const onClick = () => {
-            setTitle(v);
-            setOptTitles([]);
-          }
-          return <Chip key={i} label={v} onClick={onClick} />;
-        })}
-        {optTitles.length > 0 &&
-          <Typography variant="caption">
-            クリックで候補を採用します
-          </Typography>}
+        <h2>キーワード</h2>
+        <Autocomplete
+          multiple
+          freeSolo
+          options={[]}
+          value={keywords}
+          onChange={(e, v) => setKeywords(v)}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              variant="standard"
+              placeholder="キーワードを入力しEnterで追加します"
+            />
+          )}
+        />
+        <h2>ターゲット</h2>
         <TextField
           variant="standard"
-          placeholder="記事のタイトルを入力してください"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
+          placeholder="想定される記事の読者を入力してください (例: カップル)"
+          value={target}
+          onChange={e => setTarget(e.target.value)}
         />
-      </Stack>
-      <hr />
 
-      <h2>参考サイト(未実装)</h2>
-      <TextField
-        variant="standard"
-        placeholder="参考にするサイトのURLを入力してください"
-        value={refer}
-        onChange={e => setRefer(e.target.value)}
-      />
-      <h2>見出し</h2>
-      <Stack alignItems={"flex-start"}>
-        <Button variant="contained" onClick={suggestHeadings}>
-          タイトルから見出しを提案
-        </Button>
-        {optHeadings.length > 0 &&
-          optHeadings.map((v, i) => {
+        <h2>タイトル</h2>
+        <Stack alignItems={"flex-start"}>
+          <Button variant="contained" onClick={suggestTitles}>
+            タイトルを提案
+          </Button>
+          {optTitles.length > 0 && optTitles.map((v, i) => {
             const onClick = () => {
-              addHeading(v);
-              setOptHeadings(optHeadings.filter((h) => h !== v));
-            };
+              setTitle(v);
+              setOptTitles([]);
+            }
             return <Chip key={i} label={v} onClick={onClick} />;
           })}
-        {optHeadings.length > 0 &&
-          <Typography variant="caption">
-            クリックで候補を採用します
-          </Typography>}
-      </Stack>
-      <TextField
-        variant="standard"
-        placeholder="入力しEnderで手動で追加します"
-        inputRef={inputHeadingRef}
-        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-          const v = inputHeadingRef.current!!.value;
-          console.log(v)
-          if (e.key === "Enter" && v !== "") {
-            e.preventDefault();
-            inputHeadingRef.current!!.value = "";
-            addHeading(v);
-          }
-        }}
-      />
-      <hr />
-
-      <h2>レイアウト</h2>
-      <Typography variant="caption">
-        見出しをもとに小見出しをいくつか提案しました。
-        項目は自由に編集できるため、順序の変更や追加・削除、編集などを行ってから記事を生成してください。
-      </Typography>
-      {headings.length > 0 &&
-        headings.map((head, i) => {
-          return (
-            <Accordion
-              key={i}
-              className="p-heading-form"
-              defaultExpanded
-            >
-              <AccordionSummary>
-                <Typography>{head.name}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Container>
-                  <List>
-                    {head.subs.map((v, i) => (
-                      <div key={i}>
-                        <ListItem className="sub-item" sx={{ margin: 0 }}>
-                          <Typography>{v}</Typography>
-                        </ListItem>
-                        {i < head.subs.length - 1 && <Divider />}
-                      </div>
-                    ))}
-                  </List>
-                  <Fab
-                    variant="extended"
-                    size="small"
-                    color="primary"
-                    className="add-button"
-                    onClick={async () => {
-                      setSelectedHeading(head);
-                      let arr = await prompt.suggestSubheadings(title, head.name);
-                      setOptSubheadings(arr);
-                    }}
-                  >
-                    <AddIcon />
-                    追加
-                  </Fab>
-                  <Backdrop //TODO ファイル分離
-                    open={selectedHeading != undefined}
-                    onClick={() => setSelectedHeading(undefined)}
-                    sx={(theme) => ({ zIndex: theme.zIndex.drawer + 1 })}
-                  >
-                    <Container maxWidth="sm" className="p-heading-modal">
-                      <h2>小見出しの追加(作成中)</h2>
-                      <Typography variant="caption">
-                        必要に応じて小見出しを追加します。
-                        提案を使用するまたは手動で入力し小見出しのタイトルを決定してください。
-                      </Typography>
-                      <Box>
-                        {optSubheadings.length > 0 && optSubheadings.map((v, i) =>
-                          <Chip key={i} label={v} onClick={() => addSubheading(v)} />)}
-                      </Box>
-                    </Container>
-                  </Backdrop>
-                </Container>
-                <Stack>
-                  <Typography>文章の長さ</Typography>
-                  <Slider
-                    defaultValue={500}
-                    valueLabelDisplay="auto"
-                    onChange={(_, v) => head.length = (v as number)}
-                    step={100}
-                    min={300}
-                    max={1500}
-                    marks
-                  />
-                </Stack>
-              </AccordionDetails>
-            </Accordion>
-          );
-        })}
-      <Button variant="contained" onClick={generateBody}>
-        記事を生成
-      </Button>
-      {isGenerating && <CircularProgress />}
-      <hr />
-
-      <h2>出力結果の確認</h2>
-      {optGenerated.length > 0 &&
-        optGenerated.map((v, i) => (
-          <Box
-            key={i}
-            dangerouslySetInnerHTML={{ __html: v }}
+          {optTitles.length > 0 &&
+            <Typography variant="caption">
+              クリックで候補を採用します
+            </Typography>}
+          <TextField
+            variant="standard"
+            placeholder="記事のタイトルを入力してください"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
           />
-        ))}
-      <Button variant="contained" onClick={() => {
-        navigator.clipboard.writeText(optGenerated.join("\n"));
-      }}>
-        HTMLをコピー
-      </Button>
-    </Container>
+        </Stack>
+        <hr />
+
+        <h2>参考サイト(未実装)</h2>
+        <TextField
+          variant="standard"
+          placeholder="参考にするサイトのURLを入力してください"
+          value={referSite}
+          onChange={e => setReferSite(e.target.value)}
+        />
+        <h2>見出し</h2>
+        <Stack alignItems={"flex-start"}>
+          <Button variant="contained" onClick={suggestHeadings}>
+            タイトルから見出しを提案
+          </Button>
+          {optHeadings.length > 0 &&
+            optHeadings.map((v, i) => {
+              const onClick = () => {
+                addHeading(v);
+                setOptHeadings(optHeadings.filter((h) => h !== v));
+              };
+              return <Chip key={i} label={v} onClick={onClick} />;
+            })}
+          {optHeadings.length > 0 &&
+            <Typography variant="caption">
+              クリックで候補を採用します
+            </Typography>}
+        </Stack>
+        <TextField
+          variant="standard"
+          placeholder="入力しEnderで手動で追加します"
+          inputRef={inputHeadingRef}
+          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+            const v = inputHeadingRef.current!!.value;
+            console.log(v)
+            if (e.key === "Enter" && v !== "") {
+              e.preventDefault();
+              inputHeadingRef.current!!.value = "";
+              addHeading(v);
+            }
+          }}
+        />
+        <hr />
+
+        <h2>レイアウト</h2>
+        <Typography variant="caption">
+          見出しをもとに小見出しをいくつか提案しました。
+          項目は自由に編集できるため、順序の変更や追加・削除、編集などを行ってから記事を生成してください。
+        </Typography>
+        {headings.length > 0 && headings.map((head, i) =>
+          <HeadingView
+            key={i}
+            heading={head}
+            addSubheading={addSubheading}
+            setHeadingModal={setHeadingModal}
+            selectedHeading={selectedHeading}
+            setSelectedHeading={setSelectedHeading}
+            optSubheadings={optSubheadings}
+          />)}
+        <Button variant="contained" onClick={generateBody}>
+          記事を生成
+        </Button>
+        {isGenerating && <CircularProgress />}
+        <hr />
+
+        <h2>出力結果の確認</h2>
+        {optGenerated.length > 0 &&
+          optGenerated.map((v, i) => (
+            <Box
+              key={i}
+              dangerouslySetInnerHTML={{ __html: v }}
+            />
+          ))}
+        <Button variant="contained" onClick={() => {
+          navigator.clipboard.writeText(optGenerated.join("\n"));
+        }}>
+          HTMLをコピー
+        </Button>
+      </Container>
+    </ArticleContext.Provider>
   );
 };
 
